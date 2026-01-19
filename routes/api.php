@@ -117,7 +117,38 @@ Route::delete('email/{id}', function (){
 /**
  * Address ₊˚⊹ ᰔ
  */
+Route::get('/address', function (){
+    // Read : show list 
+    return "show list of address (´▽`ʃ♡ƪ)";
+});
+Route::get('/address/show/{id}', function (){
+    // Read : show element
+    return "show one student (＠＾０＾)";
+});
+Route::get('/address/create', function (){ // 
+    // Create : Form
+    return "form create student";
+});
+Route::post('/address', function (Request $request){
+    // Create : Store
 
+});
+Route::get('address/edit/{id}', function () { // 
+    // Edit : Form
+    return "form edit student";
+});
+Route::put('address/{id}', function (Request $request){
+    // Edit : put
+
+});
+Route::patch('address/{id}', function (Request $request){
+    // Edit : patch
+    
+});
+Route::delete('address/{id}', function (){
+    // Edit : put
+
+});
 
 
 // Routes
