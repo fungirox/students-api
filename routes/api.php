@@ -80,7 +80,38 @@ Route::delete('phone/{id}', function (){
 /**
  * Email ₊˚⊹ ᰔ
  */
+Route::get('/email', function (){
+    // Read : show list 
+    return "show list of email (´▽`ʃ♡ƪ)";
+});
+Route::get('/email/show/{id}', function (){
+    // Read : show element
+    return "show one email (＠＾０＾)";
+});
+Route::get('/email/create', function (){ // 
+    // Create : Form
+    return "form create email";
+});
+Route::post('/email', function (Request $request){
+    // Create : Store
 
+});
+Route::get('email/edit/{id}', function () { // 
+    // Edit : Form
+    return "form edit email";
+});
+Route::put('email/{id}', function (Request $request){
+    // Edit : put
+
+});
+Route::patch('email/{id}', function (Request $request){
+    // Edit : patch
+    
+});
+Route::delete('email/{id}', function (){
+    // Edit : put
+
+});
 
 
 /**
