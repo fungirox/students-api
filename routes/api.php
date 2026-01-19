@@ -43,7 +43,38 @@ Route::delete('students/{id}', function (){
 /**
  * Phone ₊˚⊹ ᰔ
  */
+Route::get('/phone', function (){
+    // Read : show list 
+    return "show list of phones (´▽`ʃ♡ƪ)";
+});
+Route::get('/phone/show/{id}', function (){
+    // Read : show element
+    return "show one phone (＠＾０＾)";
+});
+Route::get('/phone/create', function (){ // 
+    // Create : Form
+    return "form create phone";
+});
+Route::post('/phone', function (Request $request){
+    // Create : Store
 
+});
+Route::get('phone/edit/{id}', function () { // 
+    // Edit : Form
+    return "form edit phone";
+});
+Route::put('phone/{id}', function (Request $request){
+    // Edit : put
+
+});
+Route::patch('phone/{id}', function (Request $request){
+    // Edit : patch
+    
+});
+Route::delete('phone/{id}', function (){
+    // Edit : put
+
+});
 
 
 /**
