@@ -3,152 +3,85 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/**
+use App\Http\Controllers\api\StudentController;
+use App\Http\Controllers\api\EmailController;
+use App\Http\Controllers\api\PhoneController;
+use App\Http\Controllers\api\AddressController;
+
+/** R O U T E S
  * Students 𐙚 ‧₊˚ ⋅
  */
 
-Route::get('/students', function (){
-    // Read : show list 
-    return "show list of students (´▽`ʃ♡ƪ)";
-});
-Route::get('/students/show/{id}', function (){
-    // Read : show element
-    return "show one student (＠＾０＾)";
-});
-Route::get('/students/create', function (){ // 
-    // Create : Form
-    return "form create student";
-});
-Route::post('/students', function (Request $request){
-    // Create : Store
-
-});
-Route::get('students/edit/{id}', function () { // 
-    // Edit : Form
-    return "form edit student";
-});
-Route::put('students/{id}', function (Request $request){
-    // Edit : put
-
-});
-Route::patch('students/{id}', function (Request $request){
-    // Edit : patch
-    
-});
-Route::delete('students/{id}', function (){
-    // Edit : put
-
-});
+// Read : show list 
+Route::get('/students', [StudentController::class, 'index']); 
+// Read : show element
+Route::get('/students/show/{id}', [StudentController::class, 'show']); 
+// Create : Form
+Route::get('/students/create'); 
+// Create : Store
+Route::post('/students', [StudentController::class, 'store']); 
+// Edit : Form
+Route::get('students/edit/{id}');
+// Update : put
+Route::put('students/{id}', [StudentController::class, 'update']); 
+// Update : patch
+Route::patch('students/{id}', [StudentController::class, 'update_partial']); 
+// Delete
+Route::delete('students/{id}', [StudentController::class, 'delete']); 
 
 /**
  * Phone ₊˚⊹ ᰔ
  */
-Route::get('/phone', function (){
-    // Read : show list 
-    return "show list of phones (´▽`ʃ♡ƪ)";
-});
-Route::get('/phone/show/{id}', function (){
-    // Read : show element
-    return "show one phone (＠＾０＾)";
-});
-Route::get('/phone/create', function (){ // 
-    // Create : Form
-    return "form create phone";
-});
-Route::post('/phone', function (Request $request){
-    // Create : Store
 
-});
-Route::get('phone/edit/{id}', function () { // 
-    // Edit : Form
-    return "form edit phone";
-});
-Route::put('phone/{id}', function (Request $request){
-    // Edit : put
-
-});
-Route::patch('phone/{id}', function (Request $request){
-    // Edit : patch
-    
-});
-Route::delete('phone/{id}', function (){
-    // Edit : put
-
-});
-
+// Read : show list 
+Route::get('/phone', [PhoneController::class, 'index']);
+// Create : Form
+Route::get('/phone/create');
+// Create : Store
+Route::post('/phone', [PhoneController::class, 'store']);
+// Edit : Form
+Route::get('phone/edit/{id}');
+// Update : put
+Route::put('phone/{id}', [PhoneController::class, 'update']);
+// Update : patch
+Route::patch('phone/{id}', [PhoneController::class, 'update_partial']);
+// Delete
+Route::delete('phone/{id}', [PhoneController::class, 'delete']);
 
 /**
  * Email ₊˚⊹ ᰔ
  */
-Route::get('/email', function (){
-    // Read : show list 
-    return "show list of email (´▽`ʃ♡ƪ)";
-});
-Route::get('/email/show/{id}', function (){
-    // Read : show element
-    return "show one email (＠＾０＾)";
-});
-Route::get('/email/create', function (){ // 
-    // Create : Form
-    return "form create email";
-});
-Route::post('/email', function (Request $request){
-    // Create : Store
 
-});
-Route::get('email/edit/{id}', function () { // 
-    // Edit : Form
-    return "form edit email";
-});
-Route::put('email/{id}', function (Request $request){
-    // Edit : put
-
-});
-Route::patch('email/{id}', function (Request $request){
-    // Edit : patch
-    
-});
-Route::delete('email/{id}', function (){
-    // Edit : put
-
-});
-
+// Read : show list
+Route::get('/email', [EmailController::class, 'index']);
+// Create : Form
+Route::get('/email/create');
+// Create : Store
+Route::post('/email', [EmailController::class, 'store']);
+// Edit : Form
+Route::get('email/edit/{id}');
+// Update : put
+Route::put('email/{id}', [EmailController::class, 'update']);
+// Update : patch
+Route::patch('email/{id}', [EmailController::class, 'update_partial']);
+// Delete
+Route::delete('email/{id}', [EmailController::class, 'delete']);
 
 /**
  * Address ₊˚⊹ ᰔ
  */
-Route::get('/address', function (){
-    // Read : show list 
-    return "show list of address (´▽`ʃ♡ƪ)";
-});
-Route::get('/address/show/{id}', function (){
-    // Read : show element
-    return "show one student (＠＾０＾)";
-});
-Route::get('/address/create', function (){ // 
-    // Create : Form
-    return "form create student";
-});
-Route::post('/address', function (Request $request){
-    // Create : Store
 
-});
-Route::get('address/edit/{id}', function () { // 
-    // Edit : Form
-    return "form edit student";
-});
-Route::put('address/{id}', function (Request $request){
-    // Edit : put
-
-});
-Route::patch('address/{id}', function (Request $request){
-    // Edit : patch
-    
-});
-Route::delete('address/{id}', function (){
-    // Edit : put
-
-});
-
-
-// Routes
+// Read : show list 
+Route::get('/address', [AddressController::class, 'index']);
+// Create : Form
+Route::get('/address/create');
+// Create : Store
+Route::post('/address', [AddressController::class, 'store']);
+// Edit : Form
+Route::get('address/edit/{id}');
+// Update : put
+Route::put('address/{id}', [AddressController::class, 'update']);
+// Update : patch
+Route::patch('address/{id}', [AddressController::class, 'update_partial']);
+// Delete
+Route::delete('address/{id}', [AddressController::class, 'delete']);
