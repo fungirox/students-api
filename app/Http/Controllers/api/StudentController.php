@@ -83,7 +83,7 @@ class StudentController extends Controller
 
         if(!$student){
             $data = [
-                'message' => "This student doesn't exist, you can't delete them",
+                'message' => "This student doesn't exist, you can't update them",
                 'status' => 404
             ];
 
@@ -122,7 +122,7 @@ class StudentController extends Controller
             'status' => 201
         ];
 
-        return response()->json($data,201);
+        return response()->json($data, 201);
     }
 
     public function update_partial(Request $request, $id){ // patch
@@ -130,7 +130,7 @@ class StudentController extends Controller
 
         if(!$student){
             $data = [
-                'message' => "This student doesn't exist, you can't delete them",
+                'message' => "This student doesn't exist, you can't update them",
                 'status' => 404
             ];
 
