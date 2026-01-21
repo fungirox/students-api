@@ -17,11 +17,11 @@ Route::get('/students', [StudentController::class, 'index']);
 // Read : show element
 Route::get('/students/show/{id}', [StudentController::class, 'show']); 
 // Create : Form
-Route::get('/students/create'); 
+Route::get('/students/create'); //
 // Create : Store
 Route::post('/students', [StudentController::class, 'store']); 
 // Edit : Form
-Route::get('students/edit/{id}');
+Route::get('students/edit/{id}'); //
 // Update : put
 Route::put('students/{id}', [StudentController::class, 'update']); 
 // Update : patch
