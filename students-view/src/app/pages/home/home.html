@@ -13,7 +13,7 @@
     @for (student of get_request.students; track student){
         <tr>
             <td>
-                {{student["last_name"]}}
+                {{student["last_name"]}} 
             </td>
             <td>
                 {{student["middle_name"]}}
@@ -23,9 +23,9 @@
             </td>
             <td>
                 {{student["gender"]}}
-            </td>
+            </td> 
             <td>
-                View
+                <a [routerLink]="['/student/show/', student['id']]">View</a> 
             </td>
             <td>
                 Edit

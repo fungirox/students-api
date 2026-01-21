@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GetRequest } from '../../services/get-request';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -13,7 +14,6 @@ export class Home implements OnInit{
     
   }
 
-  
   ngOnInit(): void {
     this.get_request.getStudents();
   }

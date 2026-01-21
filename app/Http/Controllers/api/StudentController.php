@@ -26,7 +26,7 @@ class StudentController extends Controller
         $student = Student::find($id);
 
         $data = [
-            'students' => !$student ? "This student doesn't exist " : $student,
+            'student' => !$student ? "This student doesn't exist " : $student,
             'status' => 200
         ];
 
