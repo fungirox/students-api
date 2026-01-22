@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http';
+import { API_URL } from '../../resouces';
 
 @Injectable({
   providedIn: 'root',
@@ -7,13 +8,11 @@ import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http
 export class GetRequest {
   private http = inject(HttpClient);
 
-  api_url = "http://127.0.0.1:8000/api/students/";
-
   getStudents() {
-    return this.http.get<{students: any[]}>(`${this.api_url}`, { responseType: 'json' })
+    return this.http.get<{students: any[]}>(`${API_URL}`, { responseType: 'json' })
   }
 
   getStudentById(id: string) {
-    return this.http.get<{student: any[]}>(`${this.api_url}show/${id}`, { responseType: 'json' })
+    return this.http.get<{student: any[]}>(`${API_URL}show/${id}`, { responseType: 'json' })
   }
 }

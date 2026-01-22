@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { API_URL } from '../../resouces';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +8,8 @@ import { Injectable, inject } from '@angular/core';
 export class UpdateRequest {
   private http = inject(HttpClient);
 
-  api_url = "http://127.0.0.1:8000/api/students/";
-
+  
   updateStudent(id: string, student: any) {
-    return this.http.put(`${this.api_url}${id}`, student)
+    return this.http.put(`${API_URL}${id}`, student)
   }
 }

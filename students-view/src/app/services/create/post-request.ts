@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { API_URL } from '../../resouces';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +8,7 @@ import { Injectable, inject } from '@angular/core';
 export class PostRequest {
   private http = inject(HttpClient);
 
-  api_url = "http://127.0.0.1:8000/api/students/";
-
   createStudent(student: any) {
-    return this.http.post(`${this.api_url}`, student)
+    return this.http.post(`${API_URL}`, student)
   }
 }
