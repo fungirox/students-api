@@ -1,18 +1,18 @@
 <h1>student works!</h1><br>
-@if(get_request.student){
-<p>{{get_request.student["first_name"]}} {{get_request.student["last_name"]}}</p>
+@if(student_data){
+<p>{{student_data["first_name"]}} {{student_data["last_name"]}}</p>
 <p>Last name</p>
-<p>{{get_request.student["last_name"]}}</p>
+<p>{{student_data["last_name"]}}</p>
 <p>Middle name</p>
-<p>{{get_request.student["middle_name"]}}</p>
+<p>{{student_data["middle_name"]}}</p>
 <p>First name</p>
-<p>{{get_request.student["first_name"]}}</p>
+<p>{{student_data["first_name"]}}</p>
 <p>Gender</p>
-<p>{{get_request.student["gender"]}}</p>
+<p>{{student_data["gender"]}}</p>
 
-<a [routerLink]="['/student/edit/', get_request.student['id']]">Edit</a>
+<a [routerLink]="['/student/edit/', student_data['id']]">Edit</a>
 } @else {
     <p>No existe ese estudiante</p>
-}  
-
-<br> 
+}   
+  
+<br>  

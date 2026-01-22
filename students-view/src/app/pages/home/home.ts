@@ -8,16 +8,23 @@ import { RouterLink } from "@angular/router";
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements OnInit{
+export class Home implements OnInit {
 
-  constructor (public get_request: GetRequest) {
-    
-  }
+  students: any[] = [];
+
+  constructor(
+    public get_request: GetRequest
+  ) { }
 
   ngOnInit(): void {
-    this.get_request.getStudents();
+    this.get_request.getStudents().subscribe({
+      next: (response) => {
+        this.students = response.students
+      },
+      error: (error) => console.error(error)
+    });
   }
 
-  
+
 
 }

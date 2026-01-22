@@ -10,9 +10,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './student-edit.html',
   styleUrl: './student-edit.css',
 })
-export class StudentEdit implements OnInit{
-  
-  student_new_data = {
+export class StudentEdit implements OnInit {
+
+  student_data = {
     "id": "",
     "first_name": "",
     "middle_name": "",
@@ -20,31 +20,36 @@ export class StudentEdit implements OnInit{
     "gender": ""
   };
 
-  constructor (
-    public get_request: GetRequest, 
+  constructor(
+    public get_request: GetRequest,
     private route: ActivatedRoute,
-    public update_request : UpdateRequest
+    public update_request: UpdateRequest
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     const student_id = this.route.snapshot.paramMap.get("id");
-    this.get_request.getStudentById2(student_id == null ? "0" : student_id).subscribe({
+    this.get_request.getStudentById(student_id == null ? "0" : student_id).subscribe({
 
-      next: (response: any) => { 
+      next: (response: any) => {
         const student = response.student
-        this.student_new_data["id"] = student["id"]
-        this.student_new_data["first_name"] = student["first_name"]
-        this.student_new_data["middle_name"] = student["middle_name"]
-        this.student_new_data["last_name"] = student["last_name"]
-        this.student_new_data["gender"] = student["gender"]
-       },
+        this.student_data["id"] = student["id"]
+        this.student_data["first_name"] = student["first_name"]
+        this.student_data["middle_name"] = student["middle_name"]
+        this.student_data["last_name"] = student["last_name"]
+        this.student_data["gender"] = student["gender"]
+      },
       error: (error) => console.error(error)
     });
-    
+
   }
 
-  updateStudent(id: string){
-    this.update_request.updateStudent(id, this.student_new_data);
+  updateStudent(id: string) {
+    this.update_request.updateStudent(id, this.student_data).subscribe({
+      next: (response) => {
+        console.log("everything is goooood !!");
+      },
+      error: (error) => console.error(error)
+    });
   }
 }
 

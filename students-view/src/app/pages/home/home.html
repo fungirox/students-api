@@ -1,5 +1,6 @@
 <h1>Student list</h1>
 <h1>Lista de Estudiantes</h1>
+<a [routerLink]="['/student/create/']">New Student</a> 
 <table>
     <tr>
         <th>Last Name</th>
@@ -10,7 +11,7 @@
         <th></th>  
         <th></th>
     </tr>
-    @for (student of get_request.students; track student){  
+    @for (student of students; track student){  
         <tr> 
             <td>
                 {{student["last_name"]}}
@@ -37,4 +38,4 @@
     } @empty {
         <tr>No hay estudiantes</tr>
     }
-</table>
+</table>  
