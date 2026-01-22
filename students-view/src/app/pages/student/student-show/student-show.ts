@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetRequest } from '../../../services/read/get-request';
 import { ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { Student } from '../../../interface/student';
 
 @Component({
   selector: 'app-student',
@@ -11,12 +12,12 @@ import { RouterLink } from '@angular/router';
 })
 export class StudentShow implements OnInit {
 
-  student = {
-    "id": "",
-    "first_name": "",
-    "middle_name": "",
-    "last_name": "",
-    "gender": ""
+  student : Student = {
+    'id': '',
+    'first_name': '',
+    'middle_name': '',
+    'last_name': '',
+    'gender': ''
   };
 
   constructor(

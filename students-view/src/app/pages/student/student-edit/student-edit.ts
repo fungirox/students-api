@@ -14,11 +14,11 @@ import { Student } from '../../../interface/student';
 export class StudentEdit implements OnInit {
 
   student : Student = {
-    "id": "",
-    "first_name": "",
-    "middle_name": "",
-    "last_name": "",
-    "gender": ""
+    'id': '',
+    'first_name': '',
+    'middle_name': '',
+    'last_name': '',
+    'gender': ''
   };
 
   constructor(

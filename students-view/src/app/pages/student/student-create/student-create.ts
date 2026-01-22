@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PostRequest } from '../../../services/create/post-request';
+import { Student } from '../../../interface/student';
 
 @Component({
   selector: 'app-student-create',
@@ -10,13 +11,12 @@ import { PostRequest } from '../../../services/create/post-request';
   styleUrl: './student-create.css',
 })
 export class StudentCreate {
-  // hacer modelo para student 
-    student_data = {
-    "id": "",
-    "first_name": "",
-    "middle_name": "",
-    "last_name": "",
-    "gender": ""
+    student_data : Student = {
+    'id': '',
+    'first_name': '',
+    'middle_name': '',
+    'last_name': '',
+    'gender': ''
   };
 
   constructor(
