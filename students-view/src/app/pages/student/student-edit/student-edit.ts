@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GetRequest } from '../../../services/get-request';
+import { GetRequest } from '../../../services/read/get-request';
 import { UpdateRequest } from '../../../services/update/update-request';
 import { FormsModule } from '@angular/forms';
 import { Student } from '../../../interface/student';

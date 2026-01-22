@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { GetRequest } from '../../services/get-request';
+import { GetRequest } from '../../../services/read/get-request';
 import { ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-student',
   imports: [RouterLink],
-  templateUrl: './student.html',
-  styleUrl: './student.css',
+  templateUrl: './student-show.html',
+  styleUrl: './student-show.css',
 })
-export class Student implements OnInit {
+export class StudentShow implements OnInit {
 
   student = {
     "id": "",
