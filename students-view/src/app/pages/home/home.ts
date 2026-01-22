@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetRequest } from '../../services/get-request';
+import { GetRequest } from '../../services/read/get-request';
 import { RouterLink } from "@angular/router";
 
 @Component({
