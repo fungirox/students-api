@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetRequest } from '../../services/get-request';
 import { ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-student',
   imports: [RouterLink],
@@ -10,7 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Student implements OnInit {
 
-  student_data = {
+  student = {
     "id": "",
     "first_name": "",
     "middle_name": "",
@@ -29,11 +30,11 @@ export class Student implements OnInit {
 
       next: (response: any) => {
         const student = response.student
-        this.student_data["id"] = student["id"]
-        this.student_data["first_name"] = student["first_name"]
-        this.student_data["middle_name"] = student["middle_name"]
-        this.student_data["last_name"] = student["last_name"]
-        this.student_data["gender"] = student["gender"]
+        this.student["id"] = student["id"]
+        this.student["first_name"] = student["first_name"]
+        this.student["middle_name"] = student["middle_name"]
+        this.student["last_name"] = student["last_name"]
+        this.student["gender"] = student["gender"]
       },
       error: (error) => console.error(error)
     });

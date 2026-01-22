@@ -1,16 +1,16 @@
 <h1>student works!</h1><br>
-@if(student_data){
-<p>{{student_data["first_name"]}} {{student_data["last_name"]}}</p>
+@if(student){
+<p>{{student["first_name"]}} {{student["last_name"]}}</p>
 <p>Last name</p>
-<p>{{student_data["last_name"]}}</p>
+<p>{{student["last_name"]}}</p>
 <p>Middle name</p>
-<p>{{student_data["middle_name"]}}</p>
+<p>{{student["middle_name"]}}</p>
 <p>First name</p>
-<p>{{student_data["first_name"]}}</p>
+<p>{{student["first_name"]}}</p>
 <p>Gender</p>
-<p>{{student_data["gender"]}}</p>
+<p>{{student["gender"]}}</p>
 
-<a [routerLink]="['/student/edit/', student_data['id']]">Edit</a>
+<a [routerLink]="['/student/edit/', student['id']]">Edit</a>
 } @else {
     <p>No existe ese estudiante</p>
 }   

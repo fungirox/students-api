@@ -1,27 +1,27 @@
 <p>student-edit works!</p>
 <br>
-@if(student_data){
-<p>{{student_data["first_name"]}} {{student_data["last_name"]}}</p>
+@if(student){
+<p>{{student["first_name"]}} {{student["last_name"]}}</p>
 <br>
 <form (ngSubmit)="updateStudent()">
     <div>
         <label for="first_name">First Name</label><br> 
-        <input [(ngModel)]="student_data['first_name']"
+        <input [(ngModel)]="student['first_name']"
         type="text" id="first_name" name="first_name" />
     </div>
     <div>
         <label for="middle_name">Middle Name</label><br>
-        <input [(ngModel)]="student_data['middle_name']" 
+        <input [(ngModel)]="student['middle_name']" 
         type="text" id="middle_name" name="middle_name" />
     </div> 
     <div>
         <label for="last_name">Last Name</label><br>
-        <input [(ngModel)]="student_data['last_name']"
+        <input [(ngModel)]="student['last_name']"
         type="text" id="last_name" name="last_name" /> 
     </div>
     <div>
         <label for="gender">Gender</label><br>
-        <input [(ngModel)]="student_data['gender']"
+        <input [(ngModel)]="student['gender']"
         type="text" id="gender" name="gender" /> 
     </div>
  

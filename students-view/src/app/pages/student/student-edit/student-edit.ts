@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GetRequest } from '../../../services/get-request';
 import { UpdateRequest } from '../../../services/update/update-request';
 import { FormsModule } from '@angular/forms';
+import { Student } from '../../../interface/student';
 
 @Component({
   selector: 'app-student-edit',
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class StudentEdit implements OnInit {
 
-  student_data = {
+  student : Student = {
     "id": "",
     "first_name": "",
     "middle_name": "",
@@ -33,11 +34,11 @@ export class StudentEdit implements OnInit {
 
       next: (response: any) => {
         const student = response.student
-        this.student_data["id"] = student["id"]
-        this.student_data["first_name"] = student["first_name"]
-        this.student_data["middle_name"] = student["middle_name"]
-        this.student_data["last_name"] = student["last_name"]
-        this.student_data["gender"] = student["gender"]
+        this.student["id"] = student["id"]
+        this.student["first_name"] = student["first_name"]
+        this.student["middle_name"] = student["middle_name"]
+        this.student["last_name"] = student["last_name"]
+        this.student["gender"] = student["gender"]
       },
       error: (error) => console.error(error)
     });
@@ -45,7 +46,7 @@ export class StudentEdit implements OnInit {
   }
 
   updateStudent() {
-    this.update_request.updateStudent(this.student_data["id"], this.student_data).subscribe({
+    this.update_request.updateStudent(this.student["id"], this.student).subscribe({
       next: (response) => {
         this.new_route.navigate(['/']);
       },
