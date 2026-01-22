@@ -13,7 +13,7 @@ export class GetRequest {
   student : any;
 
   getStudents() {
-    return this.http.get<{students: any[]}>(this.api_url + 'students', { responseType: 'json' }).subscribe({
+    return this.http.get<{students: any[]}>(`${this.api_url}students`, { responseType: 'json' }).subscribe({
       next: (response) => { 
         this.students = response.students
        },
@@ -22,11 +22,15 @@ export class GetRequest {
   }
 
   getStudentById(id: string) {
-    return this.http.get<{student: any[]}>(this.api_url + 'students/show/' + id, { responseType: 'json' }).subscribe({
+    return this.http.get<{student: any[]}>(`${this.api_url}students/show/${id}`, { responseType: 'json' }).subscribe({
       next: (response) => { 
         this.student = response.student
        },
       error: (error) => console.error(error)
     });
+  }
+
+  getStudentById2(id: string) {
+    return this.http.get<{student: any[]}>(`${this.api_url}students/show/${id}`, { responseType: 'json' })
   }
 }

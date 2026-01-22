@@ -1,0 +1,35 @@
+<p>student-edit works!</p>
+<br>
+@if(student_new_data){
+<p>{{student_new_data["first_name"]}} {{student_new_data["last_name"]}}</p>
+<br>
+<form (ngSubmit)="updateStudent(student_new_data['id'])">
+    <div>  
+        <label for="first_name">First Name</label><br> 
+        <input [(ngModel)]="student_new_data['first_name']"
+        type="text" id="first_name" name="first_name" />
+    </div>
+    <div>
+        <label for="middle_name">Middle Name</label><br>
+        <input [(ngModel)]="student_new_data['middle_name']" 
+        type="text" id="middle_name" name="middle_name" />
+    </div> 
+    <div>
+        <label for="last_name">Last Name</label><br>
+        <input [(ngModel)]="student_new_data['last_name']"
+        type="text" id="last_name" name="last_name" />
+    </div>
+    <div>
+        <label for="gender">Gender</label><br>
+        <input [(ngModel)]="student_new_data['gender']"
+        type="text" id="gender" name="gender" />
+    </div>
+
+    <input type="submit"/>   
+</form>
+
+} @else {
+<p>No existe ese estudiante</p>
+}
+
+<br>
