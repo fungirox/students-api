@@ -3,7 +3,7 @@
 @if(student_data){
 <p>{{student_data["first_name"]}} {{student_data["last_name"]}}</p>
 <br>
-<form (ngSubmit)="updateStudent(student_data['id'])">
+<form (ngSubmit)="updateStudent()">
     <div>
         <label for="first_name">First Name</label><br> 
         <input [(ngModel)]="student_data['first_name']"
@@ -22,14 +22,14 @@
     <div>
         <label for="gender">Gender</label><br>
         <input [(ngModel)]="student_data['gender']"
-        type="text" id="gender" name="gender" />
+        type="text" id="gender" name="gender" /> 
     </div>
  
     <input type="submit"/>   
 </form>
      
 } @else {
-<p>No existe ese estudiante</p>
+<p>No existe ese estudiante</p> 
 }
 
-<br>
+<br>  

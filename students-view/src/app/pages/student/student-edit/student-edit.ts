@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetRequest } from '../../../services/get-request';
 import { UpdateRequest } from '../../../services/update/update-request';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +23,7 @@ export class StudentEdit implements OnInit {
   constructor(
     public get_request: GetRequest,
     private route: ActivatedRoute,
+    private new_route: Router, 
     public update_request: UpdateRequest
   ) { }
 
@@ -43,10 +44,10 @@ export class StudentEdit implements OnInit {
 
   }
 
-  updateStudent(id: string) {
-    this.update_request.updateStudent(id, this.student_data).subscribe({
+  updateStudent() {
+    this.update_request.updateStudent(this.student_data["id"], this.student_data).subscribe({
       next: (response) => {
-        console.log("everything is goooood !!");
+        this.new_route.navigate(['/']);
       },
       error: (error) => console.error(error)
     });
