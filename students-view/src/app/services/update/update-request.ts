@@ -10,6 +10,6 @@ export class UpdateRequest {
 
   
   updateStudent(id: string, student: any) {
-    return this.http.put(`${API_URL}${id}`, student)
+    return this.http.put(`${API_URL}${id}students/`, student)
   }
 }

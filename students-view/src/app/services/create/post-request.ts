@@ -9,6 +9,6 @@ export class PostRequest {
   private http = inject(HttpClient);
 
   createStudent(student: any) {
-    return this.http.post(`${API_URL}`, student)
+    return this.http.post(`${API_URL}students/`, student)
   }
 }

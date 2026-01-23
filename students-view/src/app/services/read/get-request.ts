@@ -8,11 +8,19 @@ import { API_URL } from '../../resouces';
 export class GetRequest {
   private http = inject(HttpClient);
 
+  // S T U D E N T S 
+
   getStudents() {
-    return this.http.get<{students: any[]}>(`${API_URL}`, { responseType: 'json' })
+    return this.http.get<{students: any[]}>(`${API_URL}students`, { responseType: 'json' })
   }
 
   getStudentById(id: string) {
-    return this.http.get<{student: any[]}>(`${API_URL}show/${id}`, { responseType: 'json' })
+    return this.http.get<{student: any[]}>(`${API_URL}students/show/${id}`, { responseType: 'json' })
+  }
+
+  // E M A I L S
+
+  getEmails() {
+    return this.http.get<{email: any[]}>(`${API_URL}email/`, { responseType: 'json' })
   }
 }
