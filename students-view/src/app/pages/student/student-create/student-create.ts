@@ -19,18 +19,6 @@ export class StudentCreate {
     'gender': ''
   };
 
-  options = [
-    {
-      'name' : 'Feminine',
-      'value' : 'f'
-    },
-    {
-      'name' : 'Masculine',
-      'value' : 'm'
-    }
-
-  ]
-
   constructor(
     public post_request: PostRequest,
     private new_route : Router
@@ -46,4 +34,4 @@ export class StudentCreate {
     });
   }
 }
- 
+  

@@ -1,1 +1,46 @@
-<p>email-create works!</p>
+<h1 class="text-5xl font-extrabold text-slate-800">
+    New Email
+</h1>
+<div class="flex flex-col p-4 w-1/2">
+    <form (ngSubmit)="createEmail()">
+        <div class="w-full py-2">
+            <label for="email" class="text-sm font-medium text-slate-700">Email</label>
+            <input required
+                class="bg-neutral-secondary-medium border border-slate-500 rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                placeholder="" [(ngModel)]="email['email']" type="text" id="email" name="email" />
+        </div>
+        <div class="w-full py-2">
+            <span class="text-sm font-medium text-slate-700">Email Type</span>
+            <div class="flex flex-row space-x-4">
+                <div class="flex flex-row space-x-2">
+                    <input name="gmail" id="gmail" type="radio" [value]="'gmail'" [(ngModel)]="email['email_type']" />
+                    <label for="Femenine" class="text-slate-700">Gmail</label>
+                </div>
+                <div class="flex flex-row space-x-2">
+                    <input name="proton" id="proton" type="radio" [value]="'proton'" [(ngModel)]="email['email_type']" />
+                    <label for="proton" class="text-slate-700">Proton Mail</label>
+                </div>
+                <div class="flex flex-row space-x-2">
+                    <input name="outlook" id="outlook" type="radio" [value]="'outlook'" [(ngModel)]="email['email_type']" />
+                    <label for="outlok" class="text-slate-700">Outlook</label>
+                </div>
+            </div>
+        </div>
+        <div class="w-full py-2">
+            <label for="email" class="text-sm font-medium text-slate-700">Student</label>
+            <input required
+                class="bg-neutral-secondary-medium border border-slate-500 rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                placeholder="" [(ngModel)]="email['student_id']" type="text" id="email" name="email" />
+        </div>
+        <div class="flex flex-row justify-end ">
+            <div class="w-1/3 flex flex-row justify-between ">
+                <button type="button" [routerLink]="['/email/list']"
+                    class="bg-slate-100 text-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border">Cancel</button>
+                <input type="submit"
+                    class="text-slate-100 bg-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border border-slate-800" />
+            </div>
+        </div>
+    </form>
+</div>
+
+ 

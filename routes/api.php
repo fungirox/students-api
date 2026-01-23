@@ -54,6 +54,8 @@ Route::delete('phone/{id}', [PhoneController::class, 'delete']);
 
 // Read : show list
 Route::get('/email', [EmailController::class, 'index']);
+// Read : show item
+Route::get('/email/show/{id}', [EmailController::class, 'show']);
 // Create : Form
 Route::get('/email/create');
 // Create : Store

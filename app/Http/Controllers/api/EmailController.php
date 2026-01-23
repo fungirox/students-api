@@ -9,12 +9,23 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Email;
 use App\Models\Student;
+use SebastianBergmann\Environment\Console;
 
 class EmailController extends Controller
 {
     public function index()
     { // get
-        $emails = Email::all();
+        // $emails = Email::all();
+        $emails = DB::table('email')
+            ->leftJoin('student', 'email.student_id', '=', 'student.id')
+            ->select('email.*', 'student.first_name as student_first_name', 'student.last_name as student_last_name')
+            ->get();
+
+            /**
+             * select Email.email, email.email_type, student.first_name, student.last_name from email
+             * left join student on email.student_id = student.id 
+             * order by email.email;
+             */
 
         $data = [
             'emails' => $emails->isEmpty() ? "No emails" : $emails,
@@ -22,6 +33,17 @@ class EmailController extends Controller
         ];
 
         return response()->json($data, 200);
+    }
+
+    public function show($id) { // get { id } 
+        $email = Email::find($id);
+
+        $data = [
+            'email' => !$email ? "This email doesn't exist " : $email,
+            'status' => 200
+        ];
+
+        return response()->json($data,200);
     }
 
     public function store(Request $request)

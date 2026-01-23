@@ -11,4 +11,8 @@ export class PostRequest {
   createStudent(student: any) {
     return this.http.post(`${API_URL}students/`, student)
   }
+
+  createEmail(email: any) {
+    return this.http.post(`${API_URL}email/`, email)
+  }
 }
