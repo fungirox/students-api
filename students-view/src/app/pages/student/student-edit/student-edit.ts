@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { GetRequest } from '../../../services/read/get-request';
 import { UpdateRequest } from '../../../services/update/update-request';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ import { Student } from '../../../interface/student';
 
 @Component({
   selector: 'app-student-edit',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './student-edit.html',
   styleUrl: './student-edit.css',
 })
@@ -47,8 +47,9 @@ export class StudentEdit implements OnInit {
 
   updateStudent() {
     this.update_request.updateStudent(this.student["id"], this.student).subscribe({
-      next: (response) => {
-        this.new_route.navigate(['/']);
+      next: (response: any) => {
+        const student = response.student
+        this.new_route.navigate([`/student/show/${student["id"]}`]);
       },
       error: (error) => console.error(error)
     });
