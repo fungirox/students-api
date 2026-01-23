@@ -16,6 +16,7 @@ class EmailController extends Controller
     public function index()
     { // get
         // $emails = Email::all();
+
         $emails = DB::table('email')
             ->leftJoin('student', 'email.student_id', '=', 'student.id')
             ->select('email.*', 'student.first_name as student_first_name', 'student.last_name as student_last_name')
@@ -36,7 +37,13 @@ class EmailController extends Controller
     }
 
     public function show($id) { // get { id } 
-        $email = Email::find($id);
+        //$email = Email::find($id);
+
+        $email = DB::table('email')
+            ->leftJoin('student', 'email.student_id', '=', 'student.id')
+            ->select('email.*', 'student.first_name as student_first_name', 'student.last_name as student_last_name')
+            ->where('id', '=', $id)
+            ->get();
 
         $data = [
             'email' => !$email ? "This email doesn't exist " : $email,
