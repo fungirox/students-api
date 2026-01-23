@@ -1,18 +1,32 @@
-<h1>student-show works!</h1><br>
+<div class="flex flex-row justify-between">
+    <h1 class="text-5xl font-extrabold text-slate-800">
+        Student
+    </h1>
+    <div class="text-xl flex flex-row items-center">
+        <a class="px-2 text-amber-400" [routerLink]="['/student/edit/', student['id']]"><span
+                class="fa-solid fa-pen-to-square"></span></a>
+        <a class="px-2 text-red-800" href="#"><span class="fa-solid fa-trash-can"></span></a>
+    </div>
+</div>
 @if(student){
-<p>{{student["first_name"]}} {{student["last_name"]}}</p>
-<p>Last name</p>
-<p>{{student["last_name"]}}</p>
-<p>Middle name</p>
-<p>{{student["middle_name"]}}</p>
-<p>First name</p>
-<p>{{student["first_name"]}}</p>
-<p>Gender</p>
-<p>{{student["gender"]}}</p>
-
-<a [routerLink]="['/student/edit/', student['id']]">Edit</a>
+<div class="flex flex-col p-4 w-1/2">
+    <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
+        <span for="first_name" class="text-sm font-medium text-slate-700">First Name</span>
+        <span>{{student['first_name']}}</span>
+    </div>
+    <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
+        <span for="middle_name" class="text-sm font-medium text-slate-700">Middle Name</span>
+        <span>{{student['middle_name']}}</span>
+    </div>
+    <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
+        <span for="last_name" class="text-sm font-medium text-slate-700">Last Name</span>
+        <span>{{student['last_name']}}</span>
+    </div>
+    <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
+        <span class="text-sm font-medium text-slate-700">Gender</span>
+        <span>{{student['gender']  == 'f' ? 'Feminine' : 'Masculine'}}</span>
+    </div>
+</div>
 } @else {
-    <p>No existe ese estudiante</p>
+<span>No existe ese estudiante</span>
 }   
-  
-<br>      
