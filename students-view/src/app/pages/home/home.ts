@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, computed, signal } from '@angular/core';
 import { GetRequest } from '../../services/read/get-request';
 import { RouterLink } from "@angular/router";
+import { Student } from '../../interface/student';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,8 @@ import { RouterLink } from "@angular/router";
 })
 export class Home implements OnInit {
 
-  students: any[] = [];
+  student = signal<Student[]>([]);
+  public students = computed(() => this.student());
 
   constructor(
     public get_request: GetRequest
@@ -19,13 +21,11 @@ export class Home implements OnInit {
   ngOnInit(): void {
     this.get_request.getStudents().subscribe({
       next: (response) => {
-        this.students = response.students
+        this.student.set(response.students);
+        //this.students = response.students
       },
       error: (error) => console.error(error)
     });
   }
-
-
-
 }
   

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, computed } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { GetRequest } from '../../../services/read/get-request';
 import { UpdateRequest } from '../../../services/update/update-request';
@@ -13,13 +13,16 @@ import { Student } from '../../../interface/student';
 })
 export class StudentEdit implements OnInit {
 
-  student : Student = {
-    'id': '',
-    'first_name': '',
-    'middle_name': '',
-    'last_name': '',
-    'gender': ''
-  };
+  student_empty : Student = {
+    id : '',
+    first_name: '',
+    middle_name : '',
+    last_name : '',
+    gender: ''
+  }; 
+
+  student = signal<Student>(this.student_empty);
+  public actual_student = computed(() => this.student());
 
   constructor(
     public get_request: GetRequest,
@@ -34,11 +37,7 @@ export class StudentEdit implements OnInit {
 
       next: (response: any) => {
         const student = response.student
-        this.student["id"] = student["id"]
-        this.student["first_name"] = student["first_name"]
-        this.student["middle_name"] = student["middle_name"]
-        this.student["last_name"] = student["last_name"]
-        this.student["gender"] = student["gender"]
+        this.student.set(response.student);
       },
       error: (error) => console.error(error)
     });
@@ -46,7 +45,7 @@ export class StudentEdit implements OnInit {
   }
 
   updateStudent() {
-    this.update_request.updateStudent(this.student["id"], this.student).subscribe({
+    this.update_request.updateStudent(this.student().id, this.student()).subscribe({
       next: (response: any) => {
         const student = response.student
         this.new_route.navigate([`/student/show/${student["id"]}`]);

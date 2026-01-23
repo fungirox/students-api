@@ -1,36 +1,36 @@
 <h1 class="text-5xl font-extrabold text-slate-800">
     Edit Student
 </h1>
-@if(student){
+@if(student()){
 <div class="flex flex-col p-4 w-1/2">
     <form (ngSubmit)="updateStudent()">
         <div class="w-full py-2">
             <label for="first_name" class="text-sm font-medium text-slate-700">First Name</label>
             <input required
                 class="bg-neutral-secondary-medium border border-slate-500 rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                [(ngModel)]="student['first_name']" type="text" id="first_name" name="first_name" />
+                [(ngModel)]="student().first_name" type="text" id="first_name" name="first_name" />
         </div>
         <div class="w-full py-2">
             <label for="middle_name" class="text-sm font-medium text-slate-700">Middle Name</label>
             <input 
                 class="bg-neutral-secondary-medium border border-slate-500 rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                [(ngModel)]="student['middle_name']" type="text" id="middle_name" name="middle_name" />
+                [(ngModel)]="student().middle_name" type="text" id="middle_name" name="middle_name" />
         </div>
         <div class="w-full py-2">
             <label for="last_name" class="text-sm font-medium text-slate-700">Last Name</label>
             <input required
                 class="bg-neutral-secondary-medium border border-slate-500 rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                [(ngModel)]="student['last_name']" type="text" id="last_name" name="last_name" />
+                [(ngModel)]="student().last_name" type="text" id="last_name" name="last_name" />
         </div>
         <div class="w-full py-2">
             <span class="text-sm font-medium text-slate-700">Gender</span>
             <div class="flex flex-row space-x-4">
                 <div class="flex flex-row space-x-2">
-                    <input name="Femenine" id="Femenine" type="radio" [value]="'f'" [(ngModel)]="student['gender']" />
+                    <input name="Femenine" id="Femenine" type="radio" [value]="'f'" [(ngModel)]="student().gender" />
                     <label for="Femenine" class="text-slate-700">Femenine</label>
                 </div>
                 <div class="flex flex-row space-x-2">
-                    <input name="Masculine" id="Masculine" type="radio" [value]="'m'" [(ngModel)]="student['gender']" />
+                    <input name="Masculine" id="Masculine" type="radio" [value]="'m'" [(ngModel)]="student().gender" />
                     <label for="Masculine" class="text-slate-700">Masculine</label>
                 </div>
 

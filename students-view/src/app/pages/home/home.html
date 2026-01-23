@@ -16,7 +16,7 @@
         </tr>
     </thead>        
     <tbody class="text-slate-800">
-        @for (student of students; track student){ 
+        @for (student of students(); track student){ 
         <tr>
             <td class="py-2">
                 {{student["last_name"]}}
@@ -44,3 +44,4 @@
 </table>
  
  
+  
