@@ -34,17 +34,17 @@ class StudentController extends Controller
     }
 
     public function store(Request $request) { // post
-        // La validez del tipo de dato está en el front, aquí solo se asegura que estén completos los datos 
+        // Validación completa en el frontend
         $validator = Validator::make($request->all(),[
             'last_name' => 'required',
-            'middle_name' => 'required',
+            'middle_name' => '',
             'first_name' => 'required',
             'gender' => 'required'
         ]);
 
         if($validator -> fails()){
             $data = [
-                'message' => 'You missed something',
+                'message' => '',
                 'errors' => $validator->errors(),
                 'status' => 400
             ];
@@ -93,7 +93,7 @@ class StudentController extends Controller
         // La validez del tipo de dato está en el front, aquí solo se asegura que estén completos los datos 
         $validator = Validator::make($request->all(),[
             'last_name' => 'required',
-            'middle_name' => 'required',
+            'middle_name' => '',
             'first_name' => 'required',
             'gender' => 'required'
         ]);
@@ -195,7 +195,7 @@ class StudentController extends Controller
         $student->delete();
 
         $data = [
-            'message' => "Estudiante eliminado",
+            'message' => "Student deleted successfully",
             'status' => 200
         ];
 

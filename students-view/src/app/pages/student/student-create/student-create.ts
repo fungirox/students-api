@@ -16,7 +16,7 @@ export class StudentCreate {
     'first_name': '',
     'middle_name': '',
     'last_name': '',
-    'gender': ''
+    'gender': 'f'
   };
 
   constructor(

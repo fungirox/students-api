@@ -1,25 +1,33 @@
 <h1 class="text-5xl font-extrabold text-slate-800">
     New Student
 </h1>
-<div class="flex flex-col p-4 w-1/2">
+<div class="flex flex-col p-4 w-2/3">
     <form (ngSubmit)="createStudent()">
-        <div class="w-full py-2">
-            <label for="first_name" class="text-sm font-medium text-slate-700">First Name</label>
-            <input required
-                class="bg-neutral-secondary-medium border border-slate-500 rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                placeholder="" [(ngModel)]="student['first_name']" type="text" id="first_name" name="first_name" />
+        <div class="w-full py">
+            <label for="first_name" class="text-sm font-medium text-slate-700">First Name <span
+                    class="text-red-700">*</span> </label>
+            <input required class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                text-base text-slate-900 border-slate-500" placeholder="First Name" [(ngModel)]="student['first_name']"
+                type="text" id="first_name" name="first_name" />
+            <div class="text-xs text-red-700 italic px-4 py-1">
+                <span>First name is required</span>
+            </div>
         </div>
         <div class="w-full py-2">
             <label for="middle_name" class="text-sm font-medium text-slate-700">Middle Name</label>
-            <input 
-                class="bg-neutral-secondary-medium border border-slate-500 rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                placeholder="" [(ngModel)]="student['middle_name']" type="text" id="middle_name" name="middle_name" />
+            <input class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                text-base text-slate-900 border-slate-500" placeholder="Middle Name"
+                [(ngModel)]="student['middle_name']" type="text" id="middle_name" name="middle_name" />
         </div>
         <div class="w-full py-2">
-            <label for="last_name" class="text-sm font-medium text-slate-700">Last Name</label>
-            <input required
-                class="bg-neutral-secondary-medium border border-slate-500 rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                placeholder="" [(ngModel)]="student['last_name']" type="text" id="last_name" name="last_name" />
+            <label for="last_name" class="text-sm font-medium text-slate-700">Last Name <span
+                    class="text-red-700">*</span></label>
+            <input required class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                text-base text-slate-900 border-slate-500" placeholder="Last Name" [(ngModel)]="student['last_name']"
+                type="text" id="last_name" name="last_name" />
+            <div class="text-xs text-red-700 italic px-4 py-1">
+                <span>Last name is required</span>
+            </div>
         </div>
         <div class="w-full py-2">
             <span class="text-sm font-medium text-slate-700">Gender</span>
@@ -46,5 +54,3 @@
         </div>
     </form>
 </div>
-
- 
