@@ -2,12 +2,13 @@
 
 @import "tailwindcss";
 
+/*
 h1,h2,h3{
-    font-family: 'Merriweather', Times, serif;
-}
+    font-family: 'Merriweather', monospace;
+}*/
 
 html{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     /* font-size: 70%; */
 }
 @media(min-width: 1024px){
