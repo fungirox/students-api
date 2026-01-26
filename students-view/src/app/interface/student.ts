@@ -4,4 +4,6 @@ export interface Student {
     middle_name : string;
     last_name : string;
     gender: string;
+    created_at : string;
+    updated_at : string;
 }

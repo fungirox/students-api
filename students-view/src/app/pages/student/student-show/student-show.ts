@@ -17,7 +17,9 @@ export class StudentShow implements OnInit {
     first_name: '',
     middle_name : '',
     last_name : '',
-    gender: ''
+    gender: '',
+    created_at : '',
+    updated_at : ''
   }; 
 
   student = signal<Student>(this.student_empty);
