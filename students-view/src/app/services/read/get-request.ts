@@ -18,6 +18,10 @@ export class GetRequest {
     return this.http.get<{student: any[]}>(`${API_URL}students/show/${id}`, { responseType: 'json' })
   }
 
+  getTotalStudents() {
+    return this.http.get<{data: any[]}>(`${API_URL}students/total`, { responseType: 'json' })
+  }
+
   // E M A I L S
 
   getEmails() {

@@ -16,6 +16,9 @@ export class Home implements OnInit {
   student = signal<Student[]>([]);
   public students = computed(() => this.student());
 
+  totalStudents = signal<number>(0);
+  public total = computed(() => this.totalStudents());
+
   private modal = inject(Dialog);
 
   constructor(
@@ -29,6 +32,8 @@ export class Home implements OnInit {
       },
       error: (error) => console.error(error)
     });
+    
+    
   }
 
   protected openDeleteModal(id: string, display_name: string) {

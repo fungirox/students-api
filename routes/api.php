@@ -14,14 +14,12 @@ use App\Http\Controllers\api\AddressController;
 
 // Read : show list 
 Route::get('/students', [StudentController::class, 'index']); 
+// Read : show total 
+Route::get('/students/total', [StudentController::class, 'totalStudents']); 
 // Read : show element
 Route::get('/students/show/{id}', [StudentController::class, 'show']); 
-// Create : Form
-Route::get('/students/create'); //
 // Create : Store
 Route::post('/students', [StudentController::class, 'store']); 
-// Edit : Form
-Route::get('students/edit/{id}'); //
 // Update : put
 Route::put('students/{id}', [StudentController::class, 'update']); 
 // Update : patch
@@ -35,12 +33,8 @@ Route::delete('students/{id}', [StudentController::class, 'delete']);
 
 // Read : show list 
 Route::get('/phone', [PhoneController::class, 'index']);
-// Create : Form
-Route::get('/phone/create');
 // Create : Store
 Route::post('/phone', [PhoneController::class, 'store']);
-// Edit : Form
-Route::get('phone/edit/{id}');
 // Update : put
 Route::put('phone/{id}', [PhoneController::class, 'update']);
 // Update : patch
@@ -56,12 +50,8 @@ Route::delete('phone/{id}', [PhoneController::class, 'delete']);
 Route::get('/email', [EmailController::class, 'index']);
 // Read : show item
 Route::get('/email/show/{id}', [EmailController::class, 'show']);
-// Create : Form
-Route::get('/email/create');
 // Create : Store
 Route::post('/email', [EmailController::class, 'store']);
-// Edit : Form
-Route::get('email/edit/{id}');
 // Update : put
 Route::put('email/{id}', [EmailController::class, 'update']);
 // Update : patch
@@ -75,12 +65,8 @@ Route::delete('email/{id}', [EmailController::class, 'delete']);
 
 // Read : show list 
 Route::get('/address', [AddressController::class, 'index']);
-// Create : Form
-Route::get('/address/create');
 // Create : Store
 Route::post('/address', [AddressController::class, 'store']);
-// Edit : Form
-Route::get('address/edit/{id}');
 // Update : put
 Route::put('address/{id}', [AddressController::class, 'update']);
 // Update : patch

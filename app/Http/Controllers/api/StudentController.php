@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Student;
-use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class StudentController extends Controller
 {
@@ -16,6 +15,17 @@ class StudentController extends Controller
         
         $data = [
             'students' => $students->isEmpty() ? "No students" : $students,
+            'status' => 200
+        ];
+
+        return response()->json($data,200);
+    }
+
+    public function totalStudents() {
+        $total = Student::count();
+
+        $data = [
+            'total_students' => $total,
             'status' => 200
         ];
 
@@ -44,7 +54,7 @@ class StudentController extends Controller
 
         if($validator -> fails()){
             $data = [
-                'message' => '',
+                'message' => 'Some data is missing',
                 'errors' => $validator->errors(),
                 'status' => 400
             ];
@@ -62,7 +72,7 @@ class StudentController extends Controller
 
         if(!$student){
             $data = [
-                'message' => 'Error',
+                'message' => 'Database error, could not create student',
                 'status' => 500
             ];
 
@@ -70,7 +80,7 @@ class StudentController extends Controller
         }
 
         $data = [
-            'message' => 'Estudiante creado', 
+            'message' => 'Student created successfully', 
             'student' => $student,
             'status' => 201
         ];
@@ -90,7 +100,7 @@ class StudentController extends Controller
             return response()->json($data, 404);
         }
 
-        // La validez del tipo de dato está en el front, aquí solo se asegura que estén completos los datos 
+        // 
         $validator = Validator::make($request->all(),[
             'last_name' => 'required',
             'middle_name' => '',
@@ -100,7 +110,7 @@ class StudentController extends Controller
 
         if($validator -> fails()){
             $data = [
-                'message' => 'You missed something',
+                'message' => 'Some data is missing',
                 'errors' => $validator->errors(),
                 'status' => 400
             ];
@@ -117,7 +127,7 @@ class StudentController extends Controller
         $student->save();
 
         $data = [
-            'message' => 'Estudiante actualizado', 
+            'message' => 'Student updated successfully', 
             'student' => $student,
             'status' => 201
         ];
@@ -137,7 +147,7 @@ class StudentController extends Controller
             return response()->json($data, 404);
         }
 
-        // La validez del tipo de dato está en el front, aquí solo se asegura que estén completos los datos 
+        //
         $validator = Validator::make($request->all(),[
             'last_name',
             'middle_name',
@@ -147,7 +157,7 @@ class StudentController extends Controller
 
         if($validator -> fails()){
             $data = [
-                'message' => 'You missed something',
+                'message' => 'Some data is missing',
                 'errors' => $validator->errors(),
                 'status' => 400
             ];
@@ -172,7 +182,7 @@ class StudentController extends Controller
         $student->save();
 
         $data = [
-            'message' => 'Dato actualizado', 
+            'message' => 'Student updated successfully', 
             'student' => $student,
             'status' => 200
         ];

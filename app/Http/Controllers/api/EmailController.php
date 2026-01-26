@@ -15,10 +15,9 @@ class EmailController extends Controller
 {
     public function index()
     { // get
-        // $emails = Email::all();
-
         $emails = DB::table('email')
             ->leftJoin('student', 'email.student_id', '=', 'student.id')
+            // DB::raw("CONCAT(student.first_name,' ',student.last_name) as full_name") 
             ->select('email.*', 'student.first_name as student_first_name', 'student.last_name as student_last_name')
             ->get();
 
@@ -36,9 +35,48 @@ class EmailController extends Controller
         return response()->json($data, 200);
     }
 
-    public function show($id) { // get { id } 
-        //$email = Email::find($id);
+    public function totalEmails()
+    {
+        $total = Email::count();
 
+        $data = [
+            'total_emails' => $total,
+            'status' => 200
+        ];
+
+        return response()->json($data, 200);
+    }
+
+    public function studentEmails($student_id){
+        $emails = DB::table('email')
+            ->leftJoin('student', 'email.student_id', '=', 'student.id')
+            ->select('email.*')
+            ->where('student.id', '=', $student_id)
+            ->get();
+
+        $data = [
+            'emails' => $emails->isEmpty() ? "No emails for this student" : $emails,
+            'status' => 200
+        ];
+
+        return response()->json($data, 200);
+    }
+
+    public function studentEmailsTotal($student_id){
+        $total = DB::table('email')
+            ->leftJoin('student', 'email.student_id', '=', 'student.id')
+            ->where('student.id', '=', $student_id)
+            ->count();
+
+        $data = [
+            'total' => $total,
+            'status' => 200
+        ];
+
+        return response()->json($data, 200);
+    }
+    
+    public function show($id) { // get { id } 
         $email = DB::table('email')
             ->leftJoin('student', 'email.student_id', '=', 'student.id')
             ->select('email.*', 'student.first_name as student_first_name', 'student.last_name as student_last_name')
