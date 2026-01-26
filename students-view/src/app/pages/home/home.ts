@@ -1,7 +1,9 @@
-import { Component, OnInit, computed, signal } from '@angular/core';
+import { Component, OnInit, computed, signal, inject } from '@angular/core';
 import { GetRequest } from '../../services/read/get-request';
 import { RouterLink } from "@angular/router";
 import { Student } from '../../interface/student';
+import { Modal } from '../../components/modal/modal';
+import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,8 @@ export class Home implements OnInit {
   student = signal<Student[]>([]);
   public students = computed(() => this.student());
 
+  private modal = inject(Dialog);
+
   constructor(
     public get_request: GetRequest
   ) { }
@@ -22,10 +26,19 @@ export class Home implements OnInit {
     this.get_request.getStudents().subscribe({
       next: (response) => {
         this.student.set(response.students);
-        //this.students = response.students
       },
       error: (error) => console.error(error)
     });
   }
+
+  protected openDeleteModal(id: string, display_name: string) {
+    this.modal.open(Modal,
+      {
+        data: {
+          id: id,
+          display_name: display_name,
+          type: 'Student'
+        }, disableClose: true
+      });
+  }
 }
-  
