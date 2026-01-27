@@ -27,7 +27,7 @@ class EmailController extends Controller
              */
 
         $data = [
-            'emails' => $emails->isEmpty() ? "No emails" : $emails,
+            'emails' => $emails,
             'status' => 200
         ];
 
@@ -54,7 +54,7 @@ class EmailController extends Controller
             ->get();
 
         $data = [
-            'emails' => $emails->isEmpty() ? "No emails for this student" : $emails,
+            'emails' => $emails,
             'status' => 200
         ];
 
@@ -83,7 +83,7 @@ class EmailController extends Controller
             ->first();
 
         $data = [
-            'email' => !$email ? "This email doesn't exist " : $email,
+            'email' => $email,
             'status' => 200
         ];
 
@@ -133,7 +133,7 @@ class EmailController extends Controller
         }
 
         $data = [
-            'message' => 'Email asociado',
+            'message' => 'Email created successfully',
             'email' => $email_new,
             'status' => 201
         ];

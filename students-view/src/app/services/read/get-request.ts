@@ -31,4 +31,22 @@ export class GetRequest {
   getEmailById(id: string) {
     return this.http.get<{email: any[]}>(`${API_URL}email/show/${id}`, { responseType: 'json' })
   }
+
+  // P H O N E S
+  getPhones() {
+    return this.http.get<{phone: any[]}>(`${API_URL}phone`, { responseType: 'json' })
+  }
+
+  getPhoneById(id: string) {
+    return this.http.get<{phone: any[]}>(`${API_URL}phone/show/${id}`, { responseType: 'json' })
+  }
+
+  // A D D R E S S E S
+  getAddress() {
+    return this.http.get<{address: any[]}>(`${API_URL}address`, { responseType: 'json' })
+  }
+
+  getAddressById(id: string) {
+    return this.http.get<{address: any[]}>(`${API_URL}address/show/${id}`, { responseType: 'json' })
+  }
 }

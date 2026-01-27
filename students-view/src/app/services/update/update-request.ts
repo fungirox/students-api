@@ -17,4 +17,16 @@ export class UpdateRequest {
   updateEmail(id: any, email: any) {
     return this.http.put(`${API_URL}email/${id}`, email);
   }
+
+  // P H O N E S
+  updatePhone(id: any, phone: any) {
+    return this.http.put(`${API_URL}phone/${id}`, phone);
+  }
+  
+  // A D D R E S S E S
+  updateAddress(id: any, address: any) {
+    return this.http.put(`${API_URL}address/${id}`, address);
+  }
+
 }
+

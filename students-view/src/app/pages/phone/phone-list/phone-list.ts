@@ -1,5 +1,5 @@
 import { Component, computed, OnInit, signal, inject } from '@angular/core';
-import { Email } from '../../../interface/email';
+import { Phone } from '../../../interface/phone';
 import { RouterLink } from "@angular/router";
 import { GetRequest } from '../../../services/read/get-request';
 import { Modal } from '../../../components/modal/modal';
@@ -7,14 +7,14 @@ import { Dialog } from '@angular/cdk/dialog';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-email-list',
+  selector: 'app-phone-list',
   imports: [RouterLink],
-  templateUrl: './email-list.html',
-  styleUrl: './email-list.css',
+  templateUrl: './phone-list.html',
+  styleUrl: './phone-list.css',
 })
-export class EmailList implements OnInit {
-  email = signal<Email[]>([]);
-  public emails = computed(() => this.email());
+export class PhoneList implements OnInit {
+  phone_signal = signal<Phone[]>([]);
+  public phone_computed = computed(() => this.phone_signal());
 
   private modal = inject(Dialog);
 
@@ -25,10 +25,10 @@ export class EmailList implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.get_request.getEmails().subscribe({
+    this.get_request.getPhones().subscribe({
       next: (response: any) => {
-        this.email.set(response.emails);
-        //this.emails = response.emails;
+        this.phone_signal.set(response.phones);
+        console.log(response.phones);
       },
       error: (error) => console.error(error)
     });
@@ -40,10 +40,8 @@ export class EmailList implements OnInit {
           data: {
             id: id,
             display_name: display_name,
-            type: 'Email'
+            type: 'Phone'
           }, disableClose: true
         });
     }
 }
-
-

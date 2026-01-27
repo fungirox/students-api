@@ -18,7 +18,7 @@ class PhoneController extends Controller
             ->get();
 
         $data = [
-            'phones' => $phones->isEmpty() ? "No phones" : $phones,
+            'phones' => $phones,
             'status' => 200
         ];
 

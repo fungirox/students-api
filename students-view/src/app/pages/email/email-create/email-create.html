@@ -44,7 +44,7 @@
                     class="text-red-700">*</span></label>
             <select formControlName="student_id" name="student" id="student" class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
                     text-base text-slate-900 border-slate-500">
-                @if(student().length > 0){
+                @if(student_signal().length > 0){
                     <option value="" selected>Select a student</option>
                     @for (student of students(); track student.id){
                         <option [value]="student['id']">{{ student['first_name'] }} {{ student['last_name']}}</option>

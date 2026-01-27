@@ -14,7 +14,7 @@ class StudentController extends Controller
         $students = Student::all();
         
         $data = [
-            'students' => $students->isEmpty() ? "No students" : $students,
+            'students' => $students,
             'status' => 200
         ];
 
