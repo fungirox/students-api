@@ -1,1 +1,120 @@
-<p>phone-edit works!</p>
+<h1 class="text-5xl font-extrabold text-slate-800">
+    Edit Phone
+</h1>
+<div class="flex flex-col p-4 w-2/3">
+    <form [formGroup]="phone_form" (ngSubmit)="updatePhone()">
+        <div class="w-full py-2"> <!-- P H O N E -->
+            <label for="phone" class="text-sm font-medium text-slate-700">Phone <span class="text-red-700">*</span>
+            </label>
+            <input class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                text-base text-slate-900 border-slate-500" placeholder="XXXXXXXXXX" formControlName="phone"
+                type="text" id="phone" name="phone" />
+            <div class="px-4">
+                @if (phone_form.get('phone')?.invalid && (phone_form.get('phone')?.dirty ||
+                phone_form.get('phone')?.touched)) {
+                @if(phone_form.get('phone')?.errors?.["required"]){
+                <span class="text-xs text-red-700 italic">Phone is required</span>
+                }
+                @if(phone_form.get('phone')?.errors?.["minlength"]){
+                <span class="text-xs text-red-700 italic">Phone must be at least 10 characters long</span>
+                }
+                @if(phone_form.get('phone')?.errors?.["maxlength"]){
+                <span class="text-xs text-red-700 italic">Phone must be at most 10 characters long</span>
+                }
+                }
+            </div>
+        </div>
+        <div class="w-full py-2">
+            <fieldset>
+                <legend><span class="text-sm font-medium text-slate-700">Phone Type</span></legend>
+                <div class="flex flex-row space-x-4">
+                    <div class="flex flex-row space-x-2">
+                        <label class="text-slate-700"><input name="phone_type" type="radio" [value]="'cellphone'"
+                                formControlName="phone_type" />Cellphone</label>
+                    </div>
+                    <div class="flex flex-row space-x-2">
+                        <label class="text-slate-700"><input name="phone_type" type="radio" [value]="'landline'"
+                                formControlName="phone_type" />Landline</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="w-full py-2">
+            <label for="country_code" class="text-sm font-medium text-slate-700">Country Code <span
+                    class="text-red-700">*</span></label>
+            <select formControlName="country_code" name="country_code" id="country_code" class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                    text-base text-slate-900 border-slate-500">
+                    <option value="" selected>Select a country code</option>
+                    <option value="+52">+52 México</option>
+                    <option value="+1">+1 United States and Canada</option>
+                    <option value="+44">+44 United Kingdom</option>
+                    <option value="+81">+81 Japan</option>
+                    <option value="+49">+49 Germany</option>
+                    <option value="+91">+91 India</option>
+            </select>         
+               <div class="px-4">
+                @if (phone_form.get('country_code')?.invalid && phone_form.get('country_code')?.touched) {
+                @if(phone_form.get('country_code')?.errors?.["required"]){
+                <span class="text-xs text-red-700 italic">Please select a code</span> 
+                }
+                }
+            </div>
+        </div>
+        <div class="w-full py-2"> 
+            <label for="area_code" class="text-sm font-medium text-slate-700">Area Code <span class="text-red-700">*</span>
+            </label>
+            <input class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                text-base text-slate-900 border-slate-500" placeholder="XXX" formControlName="area_code"
+                type="text" id="area_code" name="area_code" />
+            <div class="px-4">
+                @if (phone_form.get('area_code')?.invalid && (phone_form.get('area_code')?.dirty ||
+                phone_form.get('area_code')?.touched)) {
+                @if(phone_form.get('area_code')?.errors?.["required"]){
+                <span class="text-xs text-red-700 italic">Area code is required</span>
+                }
+                @if(phone_form.get('area_code')?.errors?.["minlength"]){
+                <span class="text-xs text-red-700 italic">Area code must be at least 3 characters long</span>
+                }
+                @if(phone_form.get('area_code')?.errors?.["maxlength"]){
+                <span class="text-xs text-red-700 italic">Area code must be at most 3 characters long</span>
+                }
+                }
+            </div>
+        </div>
+        <div class="w-full py-2">
+            <label for="student" class="text-sm font-medium text-slate-700">Student <span
+                    class="text-red-700">*</span></label>
+            <select formControlName="student_id" name="student" id="student" class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                    text-base text-slate-900 border-slate-500">
+                @if(student_signal().length > 0){
+                    <option value="" selected>Select a student</option>
+                    @for (student of student_signal(); track student.id){
+                        <option [value]="student['id']">{{ student['first_name'] }} {{ student['last_name']}}</option>
+                    }
+                } @else{
+                    <option value="">You don't have students registered</option>
+                }
+            </select>         
+               <div class="px-4">
+                @if (phone_form.get('student_id')?.invalid && phone_form.get('student_id')?.touched) {
+                @if(phone_form.get('student_id')?.errors?.["required"]){
+                <span class="text-xs text-red-700 italic">Please select a student</span> 
+                }
+                }
+            </div>
+        </div>
+        <div class="flex flex-row justify-end py-2">
+            <div class="w-1/3 flex flex-row justify-between ">
+                <button type="button" [routerLink]="['/phone/list']"
+                    class="bg-slate-100 text-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border">Cancel</button>
+                @if(phone_form.valid){
+                <input type="submit"
+                    class="text-slate-100 bg-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border border-slate-800" />
+                } @else{
+                <input type="submit" disabled
+                    class="text-slate-400 bg-slate-200 rounded-2xl shadow font-medium text-sm px-7 py-2 border border-slate-200" />
+                }
+            </div>
+        </div>
+    </form>
+</div>

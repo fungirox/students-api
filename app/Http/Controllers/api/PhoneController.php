@@ -74,7 +74,7 @@ class PhoneController extends Controller
             ->first();
 
         $data = [
-            'phone' => !$phone ? "This email doesn't exist " : $phone,
+            'phone' => $phone,
             'status' => 200
         ];
 

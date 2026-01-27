@@ -34,7 +34,7 @@ Route::delete('students/{id}', [StudentController::class, 'delete']);
 // Read : show list 
 Route::get('/phone', [PhoneController::class, 'index']);
 // Read : show item
-Route::get('/phone/show/{id}', [EmailController::class, 'show']);
+Route::get('/phone/show/{id}', [PhoneController::class, 'show']);
 // Create : Store
 Route::post('/phone', [PhoneController::class, 'store']);
 // Update : put
@@ -68,7 +68,7 @@ Route::delete('email/{id}', [EmailController::class, 'delete']);
 // Read : show list 
 Route::get('/address', [AddressController::class, 'index']);
 // Read : show item
-Route::get('/address/show/{id}', [EmailController::class, 'show']);
+Route::get('/address/show/{id}', [AddressController::class, 'show']);
 // Create : Store
 Route::post('/address', [AddressController::class, 'store']);
 // Update : put

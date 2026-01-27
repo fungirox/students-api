@@ -44,6 +44,22 @@ export class Modal {
           error: (error) => console.error(error)
         });
         break;
+      case 'Phone':
+        this.delete_request.deletePhoneById(this.id).subscribe({
+          next: (response) => {
+            this.closeModal();
+          },
+          error: (error) => console.error(error)
+        });
+        break;
+      case 'Address':
+        this.delete_request.deleteAddressById(this.id).subscribe({
+          next: (response) => {
+            this.closeModal();
+          },
+          error: (error) => console.error(error)
+        });
+        break;
     }
   }
 }

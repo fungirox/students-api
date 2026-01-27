@@ -38,7 +38,7 @@ export class EmailShow implements OnInit {
     this.get_request.getEmailById(email_id == null ? "0" : email_id).subscribe({
       next: (response: any) => {
         this.email_signal.set(response.email);
-        console.log(response.email);
+        //console.log(response.email);
       },
       error: (error) => console.error(error)
     });
