@@ -14,7 +14,7 @@ export class Modal {
   type : string;
   constructor(
     @Inject(DIALOG_DATA) public data:any,
-    private delete_request : DeleteRequest
+    private delete_request : DeleteRequest,
   ) { 
     this.id = data.id;
     this.display_name = data.display_name;
@@ -30,7 +30,6 @@ export class Modal {
     this.delete_request.deleteStudentById(this.id).subscribe({
       next: (response) => {
         this.closeModal();
-        //this.student.set(response.students);
       },
       error: (error) => console.error(error)
     });

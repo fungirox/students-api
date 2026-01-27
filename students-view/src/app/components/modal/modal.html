@@ -1,6 +1,18 @@
-<div class="bg-slate-200 p-4 rounded-2xl">
-    <h1>Delete {{type}}</h1>
-    <p>Are you sure you want to delete {{display_name}} ??</p>
-    <button type="button" (click)="closeModal()" class="">No, Cancel</button>
-    <button type="button" (click)="delete()" class="">Yes, Delete</button>
+<div class="bg-slate-100 w-sm rounded-2xl border-2 border-slate-700 shadow-xl">
+    <div class="h-full w-full p-8 flex flex-col justify-center items-center">
+        <h1 class="text-3xl font-extrabold text-slate-800 py-2">
+            Delete {{type}}
+        </h1>
+        <div class="text-slate-800 py-2">
+            <p>Are you sure you want to delete <span class="font-black">{{display_name}}</span> ??</p>
+        </div>
+        <div class="w-full flex flex-row justify-between py-2">
+            <button type="button" (click)="closeModal()"
+                class="bg-slate-100 text-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border">No,
+                Cancel</button>
+            <button type="button" (click)="delete()"
+                class="text-slate-100 bg-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border border-slate-800">Yes,
+                Delete</button>
+        </div>
+    </div>
 </div>
