@@ -80,8 +80,8 @@ class EmailController extends Controller
         $email = DB::table('email')
             ->leftJoin('student', 'email.student_id', '=', 'student.id')
             ->select('email.*', 'student.first_name as student_first_name', 'student.last_name as student_last_name')
-            ->where('id', '=', $id)
-            ->get();
+            ->where('email.id', '=', $id)
+            ->first();
 
         $data = [
             'email' => !$email ? "This email doesn't exist " : $email,
@@ -101,7 +101,7 @@ class EmailController extends Controller
 
         if ($validator->fails()) {
             $data = [
-                'message' => 'You missed something ',
+                'message' => 'Some data is missing',
                 'errors' => $validator->errors(),
                 'status' => 400
             ];
@@ -162,7 +162,7 @@ class EmailController extends Controller
 
         if ($validator->fails()) {
             $data = [
-                'message' => 'You missed something',
+                'message' => 'Some data is missing',
                 'errors' => $validator->errors(),
                 'status' => 400
             ];
@@ -185,7 +185,7 @@ class EmailController extends Controller
         $email_old->save();
 
         $data = [
-            'message' => 'Email actualizado',
+            'message' => 'Email updated successfully',
             'email' => $email_old,
             'status' => 201
         ];
@@ -213,7 +213,7 @@ class EmailController extends Controller
 
         if ($validator->fails()) {
             $data = [
-                'message' => 'You missed something',
+                'message' => 'Some data is missing',
                 'errors' => $validator->errors(),
                 'status' => 400
             ];
@@ -242,7 +242,7 @@ class EmailController extends Controller
         $email_old->save();
 
         $data = [
-            'message' => 'Email actualizado',
+            'message' => 'Email updated successfully',
             'email' => $email_old,
             'status' => 201
         ];
@@ -266,7 +266,7 @@ class EmailController extends Controller
         $email->delete();
 
         $data = [
-            'message' => "Email eliminado",
+            'message' => "Email deleted successfully",
             'status' => 200
         ];
 

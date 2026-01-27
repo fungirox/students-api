@@ -1,5 +1,5 @@
-import { Component, OnInit, computed, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, computed, signal, inject, effect } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { PostRequest } from '../../../services/create/post-request';
 import { Email } from '../../../interface/email';
@@ -8,20 +8,21 @@ import { GetRequest } from '../../../services/read/get-request';
 
 @Component({
   selector: 'app-email-create',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, ReactiveFormsModule],
   templateUrl: './email-create.html',
   styleUrl: './email-create.css',
 })
 export class EmailCreate implements OnInit {
-  // Aquí no puse signal porque no necesito ver este objeto solo enviarlo y no veo la necesidad 
-  // de cambiarlo
-  email : Email = {
+
+  email: Email = {
     'id': '',
     'email': '',
     'email_type': '',
     'student_id': '',
     'student_first_name': '',
-    'student_last_name': ''
+    'student_last_name': '',
+    'created_at': '',
+    'updated_at': ''
   };
 
   student = signal<Student[]>([]);
@@ -30,14 +31,32 @@ export class EmailCreate implements OnInit {
   constructor(
     public post_request: PostRequest,
     public get_request: GetRequest,
-    private new_route : Router
-  ) { }
+    private new_route: Router
+  ) {
 
-  createEmail(){
-    this.post_request.createEmail(this.email).subscribe({
+    effect(() => {
+      const control = this.email_form.get('student_id');
+      if (this.students().length === 0) {
+        control?.disable();
+      } else {
+        control?.enable();
+      }
+    });
+  }
+
+  fb = inject(NonNullableFormBuilder);
+  email_form = this.fb.group({
+    email: ['', { validators: [Validators.required, Validators.email, Validators.maxLength(100)] }],
+    email_type: ['personal'],
+    student_id: ['', { validators: [Validators.required] }]
+  });
+
+  createEmail() {
+    this.post_request.createEmail(this.email_form.value).subscribe({
       next: (response: any) => {
-        const email = response.email
-        this.new_route.navigate([`/email/show/${email["id"]}`]);
+        const email_id = response.email.id;
+        this.email_form.patchValue(response.email);
+        this.new_route.navigate([`/email/show/${email_id}`]);
       },
       error: (error) => console.error(error)
     });
@@ -50,5 +69,6 @@ export class EmailCreate implements OnInit {
       },
       error: (error) => console.error(error)
     });
+
   }
 }

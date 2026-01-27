@@ -3,38 +3,54 @@
 </h1>
 <div class="flex flex-row justify-between py-4">
     <input type="text" />
-    <button type="button" [routerLink]="['/email/create/']" class="text-slate-100 bg-slate-800 rounded-2xl shadow font-medium text-sm px-4 py-2">New email</button>
+    <button type="button" [routerLink]="['/email/create/']"
+        class="text-slate-100 bg-slate-800 rounded-2xl shadow font-medium text-sm px-4 py-2">New email</button>
 </div>
-<table class="w-full table-fixed border-separate border-4 rounded-2xl p-2 border-slate-700 bg-slate-50">
-    <thead class="text-xl font-medium text-slate-700">
-        <tr> 
-            <th class="py-2">Email</th>
-            <th class="py-2">Email Type</th>
-            <th class="py-2">Student</th>
-            <th></th>
-        </tr>
-    </thead>        
-    <tbody class="text-slate-800">
-        @for (email of emails(); track email.id){ 
-        <tr>
-            <td class="py-2">
-                {{email["email"]}}
-            </td>
-            <td class="py-2">
-                {{email["email_type"]}}
-            </td>
-            <td class="py-2">
-                {{email["student_first_name"]}} {{email["student_last_name"]}}
-            </td>
-            <td class="py-2 flex flex-row justify-end">
-                <a class="px-2 text-slate-600" [routerLink]="['/email/show/', email['id']]"><span class="fa-solid fa-eye"></span></a>
-                <a class="px-2 text-amber-400" [routerLink]="['/email/edit/', email['id']]"><span class="fa-solid fa-pen-to-square"></span></a>
-                <a class="px-2 text-red-800" href="#"><span class="fa-solid fa-trash-can"></span></a>
-            </td>
-        </tr> 
-        } @empty {
-        <tr>No emails</tr> 
-        } 
-    </tbody> 
-        
-</table>    
+<div class="grow overflow-auto border-4 rounded-2xl p-2 border-slate-700 bg-slate-50">
+    <table class="w-full table-fixed border-separate">
+        <thead class="text-lg font-medium text-slate-700 sticky top-0">
+            <tr>
+                <th>Email</th>
+                <th>Email Type</th>
+                <th>Student</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="text-slate-800 text-sm">
+            @for (email of emails(); track email.id){
+            <tr>
+                <td>
+                    {{email["email"]}}
+                </td>
+                <td>
+                    {{email["email_type"]}}
+                </td>
+                <td>
+                    {{email["student_first_name"]}} {{email["student_last_name"]}}
+                </td>
+                <td>
+                    {{pipe.transform(email["created_at"], 'MMMM d, y')}}
+                </td>
+                <td>
+                    {{pipe.transform(email["updated_at"], 'MMMM d, y')}}
+                </td>
+                <td class="py-2 flex flex-row justify-end">
+                    <a class="px-2 text-slate-600" [routerLink]="['/email/show/', email['id']]"><span
+                            class="fa-solid fa-eye"></span></a>
+                    <a class="px-2 text-amber-400" [routerLink]="['/email/edit/', email['id']]"><span
+                            class="fa-solid fa-pen-to-square"></span></a>
+                    <button class="px-2" type="button" (click)="openDeleteModal(email['id'], email['email'])"><span
+                            class="text-red-800 fa-solid fa-trash-can"></span></button>
+                </td>
+            </tr>
+            } @empty {
+            <tr>No emails</tr>
+            }
+        </tbody>
+
+    </table>
+
+
+</div>

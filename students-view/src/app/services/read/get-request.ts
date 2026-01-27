@@ -27,4 +27,8 @@ export class GetRequest {
   getEmails() {
     return this.http.get<{email: any[]}>(`${API_URL}email`, { responseType: 'json' })
   }
+
+  getEmailById(id: string) {
+    return this.http.get<{email: any[]}>(`${API_URL}email/show/${id}`, { responseType: 'json' })
+  }
 }

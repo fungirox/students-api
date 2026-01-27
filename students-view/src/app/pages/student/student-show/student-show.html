@@ -3,30 +3,30 @@
         Student
     </h1>
     <div class="text-xl flex flex-row items-center">
-        <a class="px-2 text-amber-400" [routerLink]="['/student/edit/', student().id]"><span
+        <a class="px-2 text-amber-400" [routerLink]="['/student/edit/', student_signal().id]"><span
                 class="fa-solid fa-pen-to-square"></span></a>
         <a class="px-2 text-red-800" href="#"><span class="fa-solid fa-trash-can"></span></a>
     </div>
 </div>
-@if(student()){
+@if(student_signal()){
 <div class="flex flex-col p-4 w-1/2">
     <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
         <span for="first_name" class="text-sm font-medium text-slate-700">First Name</span>
-        <span>{{student().first_name}}</span>
+        <span>{{student_signal().first_name}}</span>
     </div>
     <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
         <span for="middle_name" class="text-sm font-medium text-slate-700">Middle Name</span>
-        <span>{{student().middle_name}}</span>
+        <span>{{student_signal().middle_name}}</span>
     </div>
     <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
         <span for="last_name" class="text-sm font-medium text-slate-700">Last Name</span>
-        <span>{{student().last_name}}</span>
+        <span>{{student_signal().last_name}}</span>
     </div>
     <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
         <span class="text-sm font-medium text-slate-700">Gender</span>
-        <span>{{student().gender == 'f' ? 'Feminine' : 'Masculine'}}</span>
+        <span>{{student_signal().gender == 'f' ? 'Feminine' : 'Masculine'}}</span>
     </div>
 </div>
 } @else {
-<span>No existe ese estudiante</span>
+<span>These student doesn't exists</span>
 }   

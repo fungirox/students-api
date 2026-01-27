@@ -1,1 +1,28 @@
-<p>email-show works!</p>
+<div class="flex flex-row justify-between">
+    <h1 class="text-5xl font-extrabold text-slate-800">
+        Email
+    </h1>
+    <div class="text-xl flex flex-row items-center">
+        <a class="px-2 text-amber-400" [routerLink]="['/email/edit/', email_signal().id]"><span
+                class="fa-solid fa-pen-to-square"></span></a>
+        <a class="px-2 text-red-800" href="#"><span class="fa-solid fa-trash-can"></span></a>
+    </div>
+</div>
+@if(email_signal()){
+<div class="flex flex-col p-4 w-1/2">
+    <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
+        <span class="text-sm font-medium text-slate-700">Email</span>
+        <span>{{email_signal().email}}</span>
+    </div>
+    <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
+        <span class="text-sm font-medium text-slate-700">Email Type</span>
+        <span>{{email_signal().email_type}}</span>
+    </div>
+    <div class="w-full py-2 flex flex-col text-2xl font-bold text-slate-800">
+        <span class="text-sm font-medium text-slate-700">Student</span>
+        <span>{{email_signal().student_first_name}} {{email_signal().student_last_name}}</span>
+    </div>
+</div>
+} @else {
+<span>These email doesn't exists</span>
+}   

@@ -22,8 +22,8 @@ export class StudentShow implements OnInit {
     updated_at : ''
   }; 
 
-  student = signal<Student>(this.student_empty);
-  public actual_student = computed(() => this.student());
+  student_signal = signal<Student>(this.student_empty);
+  public actual_student = computed(() => this.student_signal());
 
   constructor(
     public get_request: GetRequest,
@@ -35,7 +35,8 @@ export class StudentShow implements OnInit {
     this.get_request.getStudentById(student_id == null ? "0" : student_id).subscribe({
 
       next: (response: any) => {
-        this.student.set(response.student);
+        this.student_signal.set(response.student);
+        console.log(response.student);
       },
       error: (error) => console.error(error)
     });
