@@ -58,10 +58,12 @@
                 <legend><span class="text-sm font-medium text-slate-700">Gender</span></legend>
                 <div class="flex flex-row space-x-4">
                     <div class="flex flex-row space-x-2">
-                        <label class="text-slate-700"><input name="gender" type="radio" [value]="'f'" formControlName="gender" />Femenine</label>
+                        <label class="text-slate-700"><input name="gender" type="radio" [value]="'f'"
+                                formControlName="gender" />Femenine</label>
                     </div>
                     <div class="flex flex-row space-x-2">
-                        <label class="text-slate-700"><input name="gender" type="radio" [value]="'m'" formControlName="gender" />Masculine</label>
+                        <label class="text-slate-700"><input name="gender" type="radio" [value]="'m'"
+                                formControlName="gender" />Masculine</label>
                     </div>
                 </div>
             </fieldset>
@@ -71,10 +73,15 @@
 
         <div class="flex flex-row justify-end ">
             <div class="w-1/3 flex flex-row justify-between ">
-                <button type="button" [routerLink]="['/']"
+                <button type="button" [routerLink]="['/student']"
                     class="bg-slate-100 text-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border">Cancel</button>
+                @if(student_form.valid){
                 <input type="submit"
                     class="text-slate-100 bg-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border border-slate-800" />
+                } @else{
+                <input type="submit" disabled
+                    class="text-slate-400 bg-slate-200 rounded-2xl shadow font-medium text-sm px-7 py-2 border border-slate-200" />
+                }
             </div>
         </div>
     </form>
