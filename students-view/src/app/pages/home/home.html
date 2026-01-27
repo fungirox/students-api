@@ -34,10 +34,10 @@
                 {{student["gender"]  == 'f' ? 'Feminine' : 'Masculine'}}
             </td>
             <td>
-                {{student["created_at"]}}
+                {{pipe.transform(student["created_at"], 'MMMM d, y')}}
             </td>
             <td>
-                {{student["updated_at"]}}
+                {{pipe.transform(student["updated_at"], 'MMMM d, y')}}
             </td>
             <td class="py-2 flex flex-row justify-end">
                 <a class="px-2" [routerLink]="['/student/show/', student['id']]"><span class="text-slate-600 fa-solid fa-eye"></span></a>

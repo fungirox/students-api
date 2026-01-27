@@ -4,6 +4,7 @@ import { RouterLink } from "@angular/router";
 import { Student } from '../../interface/student';
 import { Modal } from '../../components/modal/modal';
 import { Dialog } from '@angular/cdk/dialog';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,8 @@ export class Home implements OnInit {
   public total = computed(() => this.totalStudents());
 
   private modal = inject(Dialog);
+
+  pipe = new DatePipe('en-US');
 
   constructor(
     public get_request: GetRequest
