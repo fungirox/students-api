@@ -119,7 +119,7 @@ class PhoneController extends Controller
         }
 
         $data = [
-            'message' => 'Phone asociado',
+            'message' => 'Phone created successfully',
             'phone' => $phone_new,
             'status' => 201
         ];

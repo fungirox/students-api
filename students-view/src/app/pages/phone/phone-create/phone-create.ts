@@ -35,17 +35,17 @@ export class PhoneCreate {
   fb = inject(NonNullableFormBuilder);
   phone_form = this.fb.group({
     phone: ['', { validators: [Validators.required, Validators.minLength(10), Validators.maxLength(10)] }],
-    phone_type: ['celular'],
+    phone_type: ['cellphone'],
     country_code: ['', { validators: [Validators.required] }],
     area_code: ['', { validators: [Validators.required, Validators.minLength(3), Validators.maxLength(3)] }],
     student_id: ['', { validators: [Validators.required] }]
   });
 
   createPhone() {
-    this.post_request.createEmail(this.phone_form.value).subscribe({
+    this.post_request.createPhone(this.phone_form.value).subscribe({
       next: (response: any) => {
-        const phone_id = response.email.id;
-        this.phone_form.patchValue(response.email);
+        const phone_id = response.phone.id;
+        this.phone_form.patchValue(response.phone);
         this.new_route.navigate([`/phone/show/${phone_id}`]);
       },
       error: (error) => console.error(error)

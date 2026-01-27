@@ -29,8 +29,8 @@
                 <legend><span class="text-sm font-medium text-slate-700">Phone Type</span></legend>
                 <div class="flex flex-row space-x-4">
                     <div class="flex flex-row space-x-2">
-                        <label class="text-slate-700"><input name="phone_type" type="radio" [value]="'celular'"
-                                formControlName="phone_type" />Celular</label>
+                        <label class="text-slate-700"><input name="phone_type" type="radio" [value]="'cellphone'"
+                                formControlName="phone_type" />Cellphone</label>
                     </div>
                     <div class="flex flex-row space-x-2">
                         <label class="text-slate-700"><input name="phone_type" type="radio" [value]="'landline'"
@@ -45,13 +45,12 @@
             <select formControlName="country_code" name="country_code" id="country_code" class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
                     text-base text-slate-900 border-slate-500">
                     <option value="" selected>Select a country code</option>
-                    <option value="+52" selected>+52 México</option>
-                    <option value="" selected>Select a country code</option>
-                    <option value="" selected>Select a country code</option>
-                    <option value="" selected>Select a country code</option>
-                    <option value="" selected>Select a country code</option>
-
-                    
+                    <option value="+52">+52 México</option>
+                    <option value="+1">+1 United States and Canada</option>
+                    <option value="+44">+44 United Kingdom</option>
+                    <option value="+81">+81 Japan</option>
+                    <option value="+49">+49 Germany</option>
+                    <option value="+91">+91 India</option>
             </select>         
                <div class="px-4">
                 @if (phone_form.get('country_code')?.invalid && phone_form.get('country_code')?.touched) {
