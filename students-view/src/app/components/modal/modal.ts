@@ -9,29 +9,41 @@ import { DeleteRequest } from '../../services/delete/delete-request';
   styleUrl: './modal.css',
 })
 export class Modal {
-  id : string;
-  display_name : string;
-  type : string;
+  id: string;
+  display_name: string;
+  type: string;
   constructor(
-    @Inject(DIALOG_DATA) public data:any,
-    private delete_request : DeleteRequest,
-  ) { 
+    @Inject(DIALOG_DATA) public data: any,
+    private delete_request: DeleteRequest,
+  ) {
     this.id = data.id;
     this.display_name = data.display_name;
     this.type = data.type;
   }
 
-  private dialogRef = inject(DialogRef, {optional: true});
-  protected closeModal(){
+  private dialogRef = inject(DialogRef, { optional: true });
+  protected closeModal() {
     this.dialogRef?.close();
   }
 
-  protected delete(){
-    this.delete_request.deleteStudentById(this.id).subscribe({
-      next: (response) => {
-        this.closeModal();
-      },
-      error: (error) => console.error(error)
-    });
+  protected delete() {
+    switch (this.type) {
+      case 'Student':
+        this.delete_request.deleteStudentById(this.id).subscribe({
+          next: (response) => {
+            this.closeModal();
+          },
+          error: (error) => console.error(error)
+        });
+        break;
+      case 'Email':
+        this.delete_request.deleteEmailById(this.id).subscribe({
+          next: (response) => {
+            this.closeModal();
+          },
+          error: (error) => console.error(error)
+        });
+        break;
+    }
   }
 }

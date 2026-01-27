@@ -1,7 +1,9 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Email } from '../../../interface/email';
 import { GetRequest } from '../../../services/read/get-request';
+import { Dialog } from '@angular/cdk/dialog';
+import { Modal } from '../../../components/modal/modal';
 
 @Component({
   selector: 'app-email-show',
@@ -9,8 +11,8 @@ import { GetRequest } from '../../../services/read/get-request';
   templateUrl: './email-show.html',
   styleUrl: './email-show.css',
 })
-export class EmailShow implements OnInit{
-  email_empty : Email = {
+export class EmailShow implements OnInit {
+  email_empty: Email = {
     'id': '',
     'email': '',
     'email_type': '',
@@ -23,6 +25,8 @@ export class EmailShow implements OnInit{
 
   email_signal = signal<Email>(this.email_empty);
   public actual_email = computed(() => this.email_signal());
+
+  private modal = inject(Dialog);
 
   constructor(
     public get_request: GetRequest,
@@ -39,5 +43,16 @@ export class EmailShow implements OnInit{
       error: (error) => console.error(error)
     });
 
+  }
+
+  protected openDeleteModal(id: string, display_name: string) {
+    this.modal.open(Modal,
+      {
+        data: {
+          id: id,
+          display_name: display_name,
+          type: 'Email'
+        }, disableClose: true
+      });
   }
 }
