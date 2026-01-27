@@ -9,7 +9,7 @@ export class UpdateRequest {
   private http = inject(HttpClient);
 
   
-  updateStudent(id: string, student: any) {
+  updateStudent(id: any, student: any) {
     return this.http.put(`${API_URL}students/${id}`, student)
   }
 }
