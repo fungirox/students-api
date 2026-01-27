@@ -5,7 +5,7 @@
     <div class="text-xl flex flex-row items-center">
         <a class="px-2 text-amber-400" [routerLink]="['/student/edit/', student_signal().id]"><span
                 class="fa-solid fa-pen-to-square"></span></a>
-        <a class="px-2 text-red-800" href="#"><span class="fa-solid fa-trash-can"></span></a>
+        <button class="px-2" type="button" (click)="openDeleteModal(student_signal().id, student_signal().first_name + ' ' + student_signal().last_name)"><span class="text-red-800 fa-solid fa-trash-can"></span></button>
     </div>
 </div>
 @if(student_signal()){
