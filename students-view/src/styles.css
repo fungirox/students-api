@@ -17,3 +17,10 @@ html{
     }
 }
 
+app-root, app-header, app-footer {
+  display: block;
+}
+
+app-root {
+  height: 100%;
+}
