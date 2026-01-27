@@ -17,7 +17,6 @@ class EmailController extends Controller
     { // get
         $emails = DB::table('email')
             ->leftJoin('student', 'email.student_id', '=', 'student.id')
-            // DB::raw("CONCAT(student.first_name,' ',student.last_name) as full_name") 
             ->select('email.*', 'student.first_name as student_first_name', 'student.last_name as student_last_name')
             ->get();
 
