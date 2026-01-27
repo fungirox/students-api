@@ -45,7 +45,7 @@ export class StudentEdit implements OnInit {
 
   }
 
-  updateStudent() {
+  updateStudent(): void {
     const student_id = this.route.snapshot.paramMap.get("id");
     this.update_request.updateStudent(student_id == null ? "0" : student_id, this.student_form.value).subscribe({
       next: (response: any) => {

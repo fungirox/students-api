@@ -157,7 +157,8 @@ class EmailController extends Controller
 
         $validator = Validator::make($request->all(), [
             'email' => 'required',
-            'email_type' => 'required'
+            'email_type' => 'required',
+            'student_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -170,17 +171,21 @@ class EmailController extends Controller
             return response()->json($data, 400);
         }
 
-        if (Email::where('email', $request->email)->exists()) {
+        $exists = Email::where('email', $request->email)
+        ->where('id', '<>', $id)
+        ->exists();
+
+        if ($exists) {
             $data = [
-                'message' => "This email already exits",
+                'message' => "This email is already taken",
                 'status' => 409
             ];
-
             return response()->json($data, 409);
         }
 
         $email_old->email = $request->email;
         $email_old->email_type = $request->email_type;
+        $email_old->student_id = $request->student_id;
 
         $email_old->save();
 

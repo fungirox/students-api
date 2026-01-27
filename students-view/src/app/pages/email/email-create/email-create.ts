@@ -14,17 +14,6 @@ import { GetRequest } from '../../../services/read/get-request';
 })
 export class EmailCreate implements OnInit {
 
-  email: Email = {
-    'id': '',
-    'email': '',
-    'email_type': '',
-    'student_id': '',
-    'student_first_name': '',
-    'student_last_name': '',
-    'created_at': '',
-    'updated_at': ''
-  };
-
   student = signal<Student[]>([]);
   public students = computed(() => this.student());
 
