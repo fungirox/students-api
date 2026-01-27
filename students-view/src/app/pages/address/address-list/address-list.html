@@ -1,1 +1,55 @@
-<p>address-list works!</p>
+<h1 class="text-5xl font-extrabold text-slate-800">
+    Address list
+</h1>
+<div class="flex flex-row justify-between py-4">
+    <input type="text" />
+    <button type="button" [routerLink]="['/address/create/']"
+        class="text-slate-100 bg-slate-800 rounded-2xl shadow font-medium text-sm px-4 py-2">New address</button>
+</div>
+<div class="grow overflow-auto border-4 rounded-2xl p-2 border-slate-700 bg-slate-50">
+    <table class="w-full table-fixed border-separate">
+        <thead class="text-lg font-medium text-slate-700 sticky top-0">
+            <tr>
+                <th>Address Line</th>
+                <th>City</th>
+                <th>Zip Postcode</th>
+                <th>State</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="text-slate-800 text-sm">
+            @for (address of address_signal(); track $index){
+            <tr>
+                <td>
+                    {{address["address_line"]}}
+                </td>
+                <td>
+                    {{address["city"]}}
+                </td>
+                <td>
+                    {{address["zip_postcode"]}}
+                </td>
+                <td>
+                    {{address["state"]}}
+                </td>
+                <td>
+                    {{address["student_first_name"]}} {{address["student_last_name"]}}
+                </td>
+                <td class="py-2 flex flex-row justify-end">
+                    <a class="px-2 text-slate-600" [routerLink]="['/address/show/', address['id']]"><span
+                            class="fa-solid fa-eye"></span></a>
+                    <a class="px-2 text-amber-400" [routerLink]="['/address/edit/', address['id']]"><span
+                            class="fa-solid fa-pen-to-square"></span></a>
+                    <button class="px-2" type="button" (click)="openDeleteModal(address['id'], address['address_line'])"><span
+                            class="text-red-800 fa-solid fa-trash-can"></span></button>
+                </td>
+            </tr>
+            } @empty {
+            <tr>No addresss</tr>
+            }
+        </tbody>
+
+    </table>
+
+
+</div>

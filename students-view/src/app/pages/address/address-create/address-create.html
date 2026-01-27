@@ -1,1 +1,114 @@
-<p>address-create works!</p>
+<h1 class="text-5xl font-extrabold text-slate-800">
+    New Address
+</h1>
+<div class="flex flex-col p-4 w-2/3">
+    <form [formGroup]="address_form" (ngSubmit)="createAddress()">
+        <div class="w-full py-2"> <!-- A D D R E S S -->
+            <label for="address_line" class="text-sm font-medium text-slate-700">Address <span class="text-red-700">*</span>
+            </label>
+            <input class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                text-base text-slate-900 border-slate-500" placeholder="XXXXXXXXXX" formControlName="address_line"
+                type="text" id="address_line" name="address_line" />
+            <div class="px-4">
+                @if (address_form.get('address_line')?.invalid && (address_form.get('address_line')?.dirty ||
+                address_form.get('address_line')?.touched)) {
+                @if(address_form.get('address')?.errors?.["required"]){
+                <span class="text-xs text-red-700 italic">Address is required</span>
+                }
+                @if(address_form.get('address')?.errors?.["maxlength"]){
+                <span class="text-xs text-red-700 italic">Address must be at most 100 characters long</span>
+                }
+                }
+            </div>
+        </div>
+        <div class="w-full py-2">
+            <label for="city" class="text-sm font-medium text-slate-700">City <span class="text-red-700">*</span>
+            </label>
+            <input class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                text-base text-slate-900 border-slate-500" placeholder="" formControlName="city"
+                type="text" id="city" name="city" />
+            <div class="px-4">
+                @if (address_form.get('city')?.invalid && (address_form.get('city')?.dirty ||
+                address_form.get('city')?.touched)) {
+                @if(address_form.get('city')?.errors?.["required"]){
+                <span class="text-xs text-red-700 italic">City is required</span>
+                }
+                @if(address_form.get('city')?.errors?.["maxlength"]){
+                <span class="text-xs text-red-700 italic">City must be at most 45 characters long</span>
+                }
+                }
+            </div>
+        </div>
+        <div class="w-full py-2">
+            <label for="zip_postcode" class="text-sm font-medium text-slate-700">Zip Code <span class="text-red-700">*</span>
+            </label>
+            <input class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                text-base text-slate-900 border-slate-500" placeholder="" formControlName="zip_postcode"
+                type="text" id="zip_postcode" name="zip_postcode" />
+            <div class="px-4">
+                @if (address_form.get('zip_postcode')?.invalid && (address_form.get('zip_postcode')?.dirty ||
+                address_form.get('zip_postcode')?.touched)) {
+                @if(address_form.get('zip_postcode')?.errors?.["required"]){
+                <span class="text-xs text-red-700 italic">Zip Code is required</span>
+                }
+                @if(address_form.get('zip_postcode')?.errors?.["maxlength"]){
+                <span class="text-xs text-red-700 italic">Zip Code must be at most 45 characters long</span>
+                }
+                }
+            </div>
+        </div>
+        <div class="w-full py-2">
+            <label for="state" class="text-sm font-medium text-slate-700">State <span class="text-red-700">*</span>
+            </label>
+            <input class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                text-base text-slate-900 border-slate-500" placeholder="" formControlName="state"
+                type="text" id="state" name="state" />
+            <div class="px-4">
+                @if (address_form.get('state')?.invalid && (address_form.get('state')?.dirty ||
+                address_form.get('state')?.touched)) {
+                @if(address_form.get('state')?.errors?.["required"]){
+                <span class="text-xs text-red-700 italic">State is required</span>
+                }
+                @if(address_form.get('state')?.errors?.["maxlength"]){
+                <span class="text-xs text-red-700 italic">State must be at most 45 characters long</span>
+                }
+                }
+            </div>
+        </div>
+        <div class="w-full py-2">
+            <label for="student" class="text-sm font-medium text-slate-700">Student <span
+                    class="text-red-700">*</span></label>
+            <select formControlName="student_id" name="student" id="student" class="w-full px-3 py-3 shadow-xs rounded-xl border-default-medium bg-neutral-secondary-medium border 
+                    text-base text-slate-900 border-slate-500">
+                @if(student_signal().length > 0){
+                    <option value="" selected>Select a student</option>
+                    @for (student of student_signal(); track student.id){
+                        <option [value]="student['id']">{{ student['first_name'] }} {{ student['last_name']}}</option>
+                    }
+                } @else{
+                    <option value="">You don't have students registered</option>
+                }
+            </select>         
+               <div class="px-4">
+                @if (address_form.get('student_id')?.invalid && address_form.get('student_id')?.touched) {
+                @if(address_form.get('student_id')?.errors?.["required"]){
+                <span class="text-xs text-red-700 italic">Please select a student</span> 
+                }
+                }
+            </div>
+        </div>
+        <div class="flex flex-row justify-end py-2">
+            <div class="w-1/3 flex flex-row justify-between ">
+                <button type="button" [routerLink]="['/address/list']"
+                    class="bg-slate-100 text-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border">Cancel</button>
+                @if(address_form.valid){
+                <input type="submit"
+                    class="text-slate-100 bg-slate-800 rounded-2xl shadow font-medium text-sm px-7 py-2 border border-slate-800" />
+                } @else{
+                <input type="submit" disabled
+                    class="text-slate-400 bg-slate-200 rounded-2xl shadow font-medium text-sm px-7 py-2 border border-slate-200" />
+                }
+            </div>
+        </div>
+    </form>
+</div>
